@@ -50,6 +50,6 @@ Mongchhi 是一款非常优秀的 umijs 开发者工具，拥有丰富的功能�
 
 如果您希望为 Mongchhi 做出贡献，您可以通过以下方式参与：
 
-提交 issue：如果您在使用 Mongchhi 的过程中遇到了问题或者有建议和想法，欢迎提交 issue。
-提交 pull request：如果您想要贡献代码，您可以通过提交 pull request 的方式来参与贡献。
-编写文档：如果您善于撰写文档，并且对 Mongchhi 有深入的理解，欢迎编写文档来帮助其他开发者使用 Mongchhi。
+- 提交 issue：如果您在使用 Mongchhi 的过程中遇到了问题或者有建议和想法，欢迎提交 issue。
+- 提交 pull request：如果您想要贡献代码，您可以通过提交 pull request 的方式来参与贡献。
+- 编写文档：如果您善于撰写文档，并且对 Mongchhi 有深入的理解，欢迎编写文档来帮助其他开发者使用 Mongchhi。
