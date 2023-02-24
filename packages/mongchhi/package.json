@@ -7,6 +7,10 @@
     "mc": "bin/mongchhi.js",
     "mongchhi": "bin/mongchhi.js"
   },
+  "files": [
+    "bin",
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -20,5 +24,6 @@
     "@mongchhi/preset-mongchhi": "^0.0.1-alpha.1",
     "@umijs/core": "^4.0.53",
     "@umijs/utils": "^4.0.53"
-  }
+  },
+  "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
 }

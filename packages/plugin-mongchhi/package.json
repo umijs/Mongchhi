@@ -4,6 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "father build",
     "watch": "father dev"
@@ -18,5 +21,6 @@
     "@mongchhi/types": "^0.0.1-alpha.1",
     "@umijs/utils": "^4.0.53",
     "node-fetch": "^3.3.0"
-  }
+  },
+  "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
 }
