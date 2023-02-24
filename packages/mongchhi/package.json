@@ -1,0 +1,24 @@
+{
+  "name": "mongchhi",
+  "version": "0.0.0",
+  "description": "",
+  "bin": {
+    "hi": "bin/mongchhi.js",
+    "mc": "bin/mongchhi.js",
+    "mongchhi": "bin/mongchhi.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "father build",
+    "callme": "node bin/mongchhi.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@mongchhi/preset-mongchhi": "0.0.0",
+    "@umijs/core": "^4.0.53",
+    "@umijs/utils": "^4.0.53"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@mongchhi/plugin-mongchhi",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "father build",
+    "watch": "father dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@mongchhi/types": "0.0.0",
+    "@umijs/utils": "^4.0.53",
+    "node-fetch": "^3.3.0"
+  }
+}

@@ -1,10 +1,15 @@
 {
   "name": "mongchhi",
+  "private": true,
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "lerna run build",
+    "release": "lerna publish --force-publish=* --no-git-reset --skip-git",
+    "prepublish": "pnpm run build",
+    "bump-version": "lerna version --exact --no-commit-hooks --no-git-tag-version --no-push --loglevel error",
+    "callme": "node packages/mongchhi/bin/mongchhi.js"
   },
   "repository": {
     "type": "git",
@@ -12,9 +17,16 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/umijs/Mongchhi/issues"
   },
-  "homepage": "https://github.com/umijs/Mongchhi#readme"
+  "packageManager": "pnpm@7.24.2",
+  "homepage": "https://github.com/umijs/Mongchhi#readme",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "father": "^4.1.5",
+    "lerna": "^6.5.1",
+    "typescript": "^4.9.5"
+  }
 }

@@ -19,23 +19,18 @@ Mongchhi `[“mōng-chhī”]` 是一个基于闽南语“罔市” `[“ōng-ch
 首先，您需要安装 Node.js 和 npm。在任意的一个 umi@4 项目中，您可以通过以下命令来安装 Mongchhi：
 
 ```bash
-npm install mongchhi
+npm install -g mongchhi
 ```
 
-安装完成后，您可以通过以下命令来创建一个新的项目：
+安装完成后，您可以通过以下命令来找到当前正在运行中的 umi 项目：
 
 ```bash
-npx mongchhi init
+mongchhi mongchhi
+或者
+hi mongchhi
+或者
+hi mc
 ```
-
-接下来，您可以进入项目目录并启动开发服务器：
-
-```bash
-npx mongchhi dev
-```
-
-此时，您可以在浏览器中访问 http://localhost:3000 来查看项目页面。
-
 更加详细的使用说明和文档可以查看 [Mongchhi 官方文档](./hahaha)。
 
 ## 为什么要使用 Mongchhi?

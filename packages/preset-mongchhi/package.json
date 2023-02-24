@@ -1,0 +1,19 @@
+{
+  "name": "@mongchhi/preset-mongchhi",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "father build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@mongchhi/plugin-mongchhi": "^0.0.0"
+  }
+}
