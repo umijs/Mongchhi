@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/preset-mongchhi",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,6 +14,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@mongchhi/plugin-mongchhi": "^0.0.0"
+    "@mongchhi/plugin-mongchhi": "^0.0.1-alpha.1"
   }
 }
