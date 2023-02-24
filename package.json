@@ -6,9 +6,8 @@
   "main": "index.js",
   "scripts": {
     "build": "lerna run build",
-    "release": "lerna publish --force-publish=* --no-git-reset --skip-git",
+    "release": "lerna publish --force-publish=*",
     "prepublish": "pnpm run build",
-    "bump-version": "lerna version --exact --no-commit-hooks --no-git-tag-version --no-push --loglevel error",
     "callme": "node packages/mongchhi/bin/mongchhi.js"
   },
   "repository": {
