@@ -1,9 +1,37 @@
-import yayJpg from '../assets/yay.jpg';
+import { useEffect } from "react";
+import { socket } from "umi";
+import yayJpg from "../assets/yay.jpg";
 
-export default function HomePage() {
+function HomePage() {
+  useEffect(() => {
+    // 支持卸载
+    return socket.listen((type) => {
+      console.log(type);
+    });
+  }, []);
   return (
     <div>
-      <h2>Yay! Welcome to umi!</h2>
+      <h2
+        onClick={() => {
+          socket.send(
+            JSON.stringify({
+              type: "call",
+              payload: {
+                type: "something back!",
+              },
+            })
+          );
+        }}
+      >
+        Yay! We22lcome to umi!
+      </h2>
+      <p>123232</p>
+      <p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+      </p>
+
       <p>
         <img src={yayJpg} width="388" />
       </p>
@@ -13,3 +41,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+export default HomePage;
