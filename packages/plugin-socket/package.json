@@ -1,5 +1,5 @@
 {
-  "name": "@mongchhi/preset-mongchhi",
+  "name": "@mongchhi/plugin-socket",
   "version": "0.0.1-alpha.1",
   "description": "",
   "main": "dist/index.js",
@@ -8,7 +8,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "father build"
+    "postinstall": "node hackumi",
+    "build": "father build",
+    "watch": "father dev"
   },
   "keywords": [],
   "author": "",
@@ -16,9 +18,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "devDependencies": {
+    "umi": "^4.0.53"
+  },
   "dependencies": {
-    "@mongchhi/plugin-mongchhi": "^0.0.1-alpha.1",
-    "@mongchhi/plugin-socket": "^0.0.1-alpha.1"
+    "@mongchhi/types": "^0.0.1-alpha.1",
+    "@umijs/bundler-webpack": "^4.0.53",
+    "@umijs/utils": "^4.0.53"
   },
   "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
 }
