@@ -6,8 +6,10 @@
   "main": "index.js",
   "scripts": {
     "build": "lerna run build",
+    "dev": "lerna run dev",
     "release": "lerna publish --force-publish=*",
     "prepublish": "pnpm run build",
+    "simple": "cd examples/simple && pnpm start",
     "callme": "node packages/mongchhi/bin/mongchhi.js"
   },
   "repository": {

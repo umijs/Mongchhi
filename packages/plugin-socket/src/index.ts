@@ -5,6 +5,9 @@ import { DIR_NAME, MESSAGE_TYPE, TEMPLATES_DIR } from './constants';
 
 const clients: any = {};
 export default (api: IApi) => {
+  // TODO: 兼容 mongchhi
+  // @ts-ignore
+  if(api.service.opts.frameworkName === 'mongchhi') return;
   api.register({
     key: 'onGenerateFiles',
     fn: async () => {

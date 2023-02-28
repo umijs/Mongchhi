@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "father build",
+    "dev": "father dev",
     "watch": "father dev"
   },
   "keywords": [],

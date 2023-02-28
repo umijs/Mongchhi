@@ -5,6 +5,16 @@ const getAppDataUrl = (port: number | string) => {
   return `http://localhost:${port}/__umi/api/app-data`;
 };
 
+const getUmiAppByPort = async (port: number | string) => {
+  let json: any = null;
+  try {
+    const { default: fetch } = await import("node-fetch");
+    const url = getAppDataUrl(port);
+    json = await fetch(url).then((rest) => rest.json());
+  } catch (e) {}
+  return json;
+};
+
 export default (api: IApi) => {
   api.registerCommand({
     name: "mongchhi",
@@ -16,16 +26,12 @@ export default (api: IApi) => {
       // 从缓存页面中读取，或者从页面中打开磁盘目录
       // find live umi app
       const liveUmiApp = {} as any;
-      const { default: fetch } = await import("node-fetch");
       logger.profile("find", "find live umi app...");
       for (let index = 8000; index < 8010; index++) {
-        try {
-          const url = getAppDataUrl(index);
-          const json: any = await fetch(url).then((rest) => rest.json());
-          if (json && json?.cwd) {
-            liveUmiApp[json?.cwd] = json;
-          }
-        } catch (e) {}
+        const json: any = await getUmiAppByPort(index);
+        if (json && json?.cwd) {
+          liveUmiApp[json?.cwd] = json;
+        }
       }
       logger.profile("find");
       const keys = Object.keys(liveUmiApp);

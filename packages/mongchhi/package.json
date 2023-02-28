@@ -15,6 +15,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "father build",
+    "dev": "father dev",
     "callme": "node bin/mongchhi.js"
   },
   "keywords": [],
