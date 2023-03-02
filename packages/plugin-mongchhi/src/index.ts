@@ -61,7 +61,8 @@ const isPortOccupied = (port: number) => {
  */
 const findPortsInUse = async () => {
   let result: number[] = [];
-  for (let i = 1; i < 65535; i++) { 
+  // 0~1023为系统端口 1024为保留端口
+  for (let i = 1025; i < 65535; i++) { 
     try {
       const status = await isPortOccupied(i);
       if (status) {
@@ -88,7 +89,6 @@ export default (api: IApi) => {
       logger.profile("find", "find live umi app...");
       // 寻找占用中的端口
       const portsInUse = await findPortsInUse();
-      console.log(portsInUse);
       for (const port of portsInUse) {
         const json: any = await getUmiAppByPort(port);
         if (json && json?.cwd) {
@@ -97,7 +97,6 @@ export default (api: IApi) => {
       }
       logger.profile("find");
       const keys = Object.keys(liveUmiApp);
-      console.log(keys);
       if (keys && keys.length > 0) {
         logger.info("I find some live umi app:");
         keys.forEach((key) => {
