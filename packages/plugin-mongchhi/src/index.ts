@@ -115,6 +115,12 @@ export default (api: IApi) => {
         });
       }
       // TODO: 通过找到的 umi 项目在本地的地址，在缓存文件中自动添加 local all umi app
+      try {
+        const fs = require('fs');
+        fs.writeFile('./localUmiAppData.json', JSON.stringify(liveUmiApp), (err: any) => {
+          if (err) throw err;
+        })
+      } catch (e) {}
     },
   });
 };
