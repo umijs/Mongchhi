@@ -156,12 +156,7 @@ importers:
       umi-plugin-route-mdx: registry.npmjs.org/umi-plugin-route-mdx/1.0.0
 
   scripts:
-    specifiers:
-      '@umijs/utils': ^4.0.53
-      tsx: ^3.12.3
-    dependencies:
-      '@umijs/utils': registry.npmjs.org/@umijs/utils/4.0.56
-      tsx: registry.npmjs.org/tsx/3.12.3
+    specifiers: {}
 
 packages:
 
@@ -8066,6 +8061,7 @@ packages:
     dependencies:
       chokidar: registry.npmjs.org/chokidar/3.5.3
       pino: registry.npmjs.org/pino/7.11.0
+    dev: true
 
   registry.npmjs.org/@vitejs/plugin-react/3.1.0_vite@4.1.1:
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-3.1.0.tgz}
