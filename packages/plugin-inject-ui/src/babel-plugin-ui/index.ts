@@ -208,8 +208,6 @@ export default () => {
     }
   }
 
-  let layoutIndexByFilename: any = {};
-
   /**
    * 检查是否走 Babel，目前只针对 /pages/ 或 /page/ 目录下的页面
    * 其它不作为添加的入口
@@ -278,19 +276,14 @@ export default () => {
       CallExpression(path, state) {
         const {
           filename,
-          opts: {
-            BLOCK_LAYOUT_PREFIX,
-            UMI_UI_FLAG_PLACEHOLDER,
-            doTransform,
-            GUmiUIFlag,
-          },
+          opts: { doTransform },
         } = state;
 
         assert(doTransform, 'opts.doTransform must supplied');
         if (!doTransform(filename)) return;
 
-        const { node } = path;
-        const { callee, arguments: args } = node;
+        // const { node } = path;
+        // const { callee, arguments: args } = node;
 
         // _react.default.createElement(_umi.UmiUIFlag, null)
         // if (

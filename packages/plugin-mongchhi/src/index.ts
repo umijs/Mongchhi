@@ -12,7 +12,7 @@ const getUmiAppByPort = async (port: number | string) => {
 
   // 计时器
   let timeoutPromise = (timeout = 3000) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((_, reject) => {
       setTimeout(() => {
         reject('time is up');
         controller.abort();
@@ -40,7 +40,7 @@ const getUmiAppByPort = async (port: number | string) => {
 const isPortOccupied = (port: number) => {
   const net = require('net');
   let listener = net.createServer().listen(port);
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // 如果监听成功，表示端口没有被其他服务占用，端口可用，取消监听，返回结果false
     listener.on('listening', () => {
       listener.close();
@@ -83,7 +83,7 @@ export default (api: IApi) => {
     name: 'mongchhi',
     alias: 'mc',
     description: 'call to mongchhi',
-    async fn({ args }) {
+    async fn() {
       logger.info('I am here!');
       // TODO: 读取 local all umi app
       // 从缓存页面中读取，或者从页面中打开磁盘目录

@@ -46,9 +46,10 @@ export { createSocket, socket } from './client';
         if (who && !clients[who]) {
           clients[who] = true;
           // 接收前端的数据
-          ws.on('message', async (data: any) => {
+          ws.on('message', async (msg: any) => {
+            let data: any = {};
             try {
-              data = JSON.parse(data);
+              data = JSON.parse(msg);
             } catch (error) {
               data = {};
             }
