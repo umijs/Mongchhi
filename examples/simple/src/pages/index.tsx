@@ -23,12 +23,9 @@ function HomePage() {
           );
         }}
       >
-        Yay! We22lcome to umi!
+        Yay! Welcome to umi!
       </h2>
-      <p>123232</p>
       <p>
-        <p>Card content</p>
-        <p>Card content</p>
         <p>Card content</p>
       </p>
 
