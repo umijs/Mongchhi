@@ -20,21 +20,19 @@
     "callme": "node packages/mongchhi/bin/mongchhi.js",
     "dev": "lerna run dev",
     "format": "prettier --cache --write .",
+    "prepare": "is-ci || husky install",
     "prepublish": "pnpm run build",
     "release": "lerna publish --force-publish=*",
     "simple": "cd examples/simple && pnpm start",
     "test": "vitest run"
   },
-  "pre-commit": [
-    "format",
-    "test"
-  ],
   "devDependencies": {
     "@alita/test": "1.0.0-beta.5",
     "@types/node": "^18.0.0",
     "father": "^4.1.5",
+    "husky": "^8.0.0",
+    "is-ci": "^3.0.1",
     "lerna": "^6.5.1",
-    "pre-commit": "^1.2.2",
     "prettier": "^2.8.4",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-packagejson": "^2.4.3",
