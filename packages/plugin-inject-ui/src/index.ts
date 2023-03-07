@@ -1,18 +1,18 @@
-import { readFileSync } from "fs";
-import { join } from "path";
-import { IApi } from "umi";
-import { Mustache, winPath } from "@umijs/utils";
+import { Mustache, winPath } from '@umijs/utils';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { IApi } from 'umi';
 import {
   BLOCK_LAYOUT_PREFIX,
-  UI_ADD_COMPONENT,
   TEMPLATES_DIR,
+  UI_ADD_COMPONENT,
   UI_DIR,
   UMI_UI_FLAG_PLACEHOLDER,
-} from "./constants";
+} from './constants';
 
 export default (api: IApi) => {
   api.describe({
-    key: "injectUi",
+    key: 'injectUi',
     config: {
       schema: (Joi) => {
         return Joi.boolean();
@@ -32,7 +32,7 @@ export default (api: IApi) => {
       .filter(Boolean);
     return [
       [
-        require.resolve("./babel-plugin-ui"),
+        require.resolve('./babel-plugin-ui'),
         {
           BLOCK_LAYOUT_PREFIX,
           UMI_UI_FLAG_PLACEHOLDER,
@@ -48,12 +48,12 @@ export default (api: IApi) => {
 
   api.addEntryCodeAhead(() => {
     const injectUIFlagTpl = readFileSync(
-      join(TEMPLATES_DIR, "injectUIFlag.ts.tpl"),
-      "utf-8"
+      join(TEMPLATES_DIR, 'injectUIFlag.ts.tpl'),
+      'utf-8',
     );
     return Mustache.render(injectUIFlagTpl, {
       UI_ADD_COMPONENT,
-      GUmiUIFlagPath: winPath(require.resolve(join(UI_DIR, "GUmiUIFlag"))),
+      GUmiUIFlagPath: winPath(require.resolve(join(UI_DIR, 'GUmiUIFlag'))),
     });
   });
 };

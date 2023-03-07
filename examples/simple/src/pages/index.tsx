@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { socket } from "umi";
-import yayJpg from "../assets/yay.jpg";
+import { useEffect } from 'react';
+import { socket } from 'umi';
+import yayJpg from '../assets/yay.jpg';
 
 function HomePage() {
   useEffect(() => {
@@ -15,11 +15,11 @@ function HomePage() {
         onClick={() => {
           socket.send(
             JSON.stringify({
-              type: "call",
+              type: 'call',
               payload: {
-                type: "something back!",
+                type: 'something back!',
               },
-            })
+            }),
           );
         }}
       >

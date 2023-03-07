@@ -14,7 +14,10 @@ interface GUmiUIFlagState {
   hovered: boolean;
 }
 
-export default class GUmiUIFlag extends React.Component<GUmiUIFlagProps, GUmiUIFlagState> {
+export default class GUmiUIFlag extends React.Component<
+  GUmiUIFlagProps,
+  GUmiUIFlagState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -108,7 +111,9 @@ export default class GUmiUIFlag extends React.Component<GUmiUIFlagProps, GUmiUIF
                   height: '60px',
                   lineHeight: '60px',
                 }),
-            background: hovered ? 'rgba(24, 144, 255, 0.25)' : 'rgba(24,144,255,0.15)',
+            background: hovered
+              ? 'rgba(24, 144, 255, 0.25)'
+              : 'rgba(24,144,255,0.15)',
             border: '1px dashed #1890ff',
             textAlign: 'center',
             color: '#329bff',

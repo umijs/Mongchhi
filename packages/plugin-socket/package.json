@@ -2,30 +2,30 @@
   "name": "@mongchhi/plugin-socket",
   "version": "0.0.1-alpha.1",
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "postinstall": "node hackumi",
     "build": "father build",
     "dev": "father dev",
+    "postinstall": "node hackumi",
     "watch": "father dev"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "umi": "^4.0.53"
   },
   "dependencies": {
     "@mongchhi/types": "^0.0.1-alpha.1",
     "@umijs/bundler-webpack": "^4.0.53",
     "@umijs/utils": "^4.0.53"
+  },
+  "devDependencies": {
+    "umi": "^4.0.53"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
 }

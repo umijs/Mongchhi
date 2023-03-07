@@ -7,7 +7,7 @@ const clients: any = {};
 export default (api: IApi) => {
   // TODO: 兼容 mongchhi
   // @ts-ignore
-  if(api.service.opts.frameworkName === 'mongchhi') return;
+  if (api.service.opts.frameworkName === 'mongchhi') return;
   api.register({
     key: 'onGenerateFiles',
     fn: async () => {
@@ -28,7 +28,9 @@ export { createSocket, socket } from './client';
     },
   });
   api.addEntryCode(() => {
-    return [`import { createSocket } from '@@/${DIR_NAME}/client';createSocket()`];
+    return [
+      `import { createSocket } from '@@/${DIR_NAME}/client';createSocket()`,
+    ];
   });
   api.onDevCompileDone(() => {
     // only dev running
@@ -62,7 +64,12 @@ export { createSocket, socket } from './client';
                   break;
                 case 'call':
                   console.log('[MongChhi] call me!', data?.payload?.type ?? '');
-                  g_ws.send(JSON.stringify({ type: data?.payload?.type ?? 'call', payload: data?.payload }));
+                  g_ws.send(
+                    JSON.stringify({
+                      type: data?.payload?.type ?? 'call',
+                      payload: data?.payload,
+                    }),
+                  );
                   break;
                 default:
                   await api.applyPlugins({

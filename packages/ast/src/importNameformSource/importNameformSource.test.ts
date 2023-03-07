@@ -8,7 +8,11 @@ const cwd = join(fixtures, 'importSource');
 
 test('normal', () => {
   const ast = getASTByFilePath(join(cwd, 'a.ts'));
-  const outputAst = importNameformSource(ast!, 'getASTByFilePath', '@umijs/ast');
+  const outputAst = importNameformSource(
+    ast!,
+    'getASTByFilePath',
+    '@umijs/ast',
+  );
   const code = generate(outputAst);
   expect(code).toContain(
     "import { generate, getASTByFilePath } from '@umijs/ast';\nconsole.log(generate);\nconst bar = {};",
@@ -17,9 +21,15 @@ test('normal', () => {
 
 test('no import', () => {
   const ast = getASTByFilePath(join(cwd, 'b.ts'));
-  const outputAst = importNameformSource(ast!, 'getASTByFilePath', '@umijs/ast');
+  const outputAst = importNameformSource(
+    ast!,
+    'getASTByFilePath',
+    '@umijs/ast',
+  );
   const code = generate(outputAst);
-  expect(code).toContain("import { getASTByFilePath } from '@umijs/ast';const bar = {};");
+  expect(code).toContain(
+    "import { getASTByFilePath } from '@umijs/ast';const bar = {};",
+  );
 });
 // 请使用 typescript 完成 importNameformSource 函数，使得一下测试用例通过。
 

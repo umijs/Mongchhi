@@ -1,8 +1,8 @@
-import { expect } from 'vitest';
 import { transform } from '@mongchhi/ast';
+import { winPath } from '@umijs/utils';
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import { basename, join } from 'path';
-import { winPath } from '@umijs/utils';
+import { expect } from 'vitest';
 import { BLOCK_LAYOUT_PREFIX, UMI_UI_FLAG_PLACEHOLDER } from '../constants';
 
 const fixtures = join(winPath(__dirname), 'fixtures');
