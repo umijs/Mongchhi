@@ -1,0 +1,15 @@
+{
+  "name": "@mongchhi/ast",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@umijs/ast": "^4.0.35",
+    "@umijs/bundler-utils": "^4.0.35"
+  }
+}

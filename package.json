@@ -10,6 +10,7 @@
     "release": "lerna publish --force-publish=*",
     "prepublish": "pnpm run build",
     "simple": "cd examples/simple && pnpm start",
+    "test": "vitest run",
     "callme": "node packages/mongchhi/bin/mongchhi.js"
   },
   "repository": {
@@ -25,9 +26,12 @@
   "packageManager": "pnpm@7.24.2",
   "homepage": "https://github.com/umijs/Mongchhi#readme",
   "devDependencies": {
+    "@alita/test": "1.0.0-beta.5",
     "@types/node": "^18.0.0",
     "father": "^4.1.5",
     "lerna": "^6.5.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "vitest": "^0.29.2"
   }
 }
