@@ -15,7 +15,7 @@ test('normal', () => {
   );
   const code = generate(outputAst);
   expect(code).toContain(
-    "e.log(generate);\nconst bar = {};",
+    "import { generate, getASTByFilePath } from '@umijs/ast';\nconsole.log(generate);\nconst bar = {};",
   );
 });
 
