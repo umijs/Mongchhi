@@ -2,3 +2,6 @@ node_modules
 dist
 es
 lib
+.umi
+.umi-production
+.umi-test

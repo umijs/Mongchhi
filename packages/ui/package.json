@@ -1,0 +1,20 @@
+{
+  "name": "@mongchhi/ui-client",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "umi build",
+    "preview": "umi preview",
+    "setup": "umi setup",
+    "start": "umi dev"
+  },
+  "dependencies": {
+    "@alita/flow": "^3.1.0",
+    "antd": "^5.3.0",
+    "umi": "^4.0.53",
+    "umi-plugin-route-mdx": "^1.0.0"
+  }
+}

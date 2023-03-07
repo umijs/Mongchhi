@@ -10,20 +10,23 @@ export async function run() {
     },
     boolean: ['version'],
   });
-  const command = args._[0];
+  let command = args._[0];
   if ([DEV_COMMAND, 'setup'].includes(command)) {
     process.env.NODE_ENV = 'development';
   } else if (command === 'build') {
     process.env.NODE_ENV = 'production';
   }
-
+  if (!command) {
+    // 没有命令就默认启动 ui 页面
+    command = 'show';
+  }
   if (command === 'version' || command === 'v') {
     const pkg = require('../package.json');
     console.log(`${pkg?.name}@${pkg?.version}`);
   } else {
     try {
       await new Service().run2({
-        name: args._[0],
+        name: command,
         args,
       });
     } catch (e: any) {
