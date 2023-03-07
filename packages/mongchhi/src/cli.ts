@@ -16,7 +16,6 @@ export async function run() {
   } else if (command === 'build') {
     process.env.NODE_ENV = 'production';
   }
-  console.log(command);
   if (!command) {
     // 没有命令就默认启动 ui 页面
     command = 'show';
