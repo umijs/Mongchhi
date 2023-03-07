@@ -160,26 +160,7 @@ export function isChildFunc(node: any) {
   );
 }
 
-export function getReturnNode(
-  node: t.ArrowFunctionExpression | t.ClassDeclaration,
-  path: any,
-) {
-  if (
-    t.isArrowFunctionExpression(node) ||
-    t.isFunctionDeclaration(node) ||
-    t.isFunctionExpression(node)
-  ) {
-    return findReturnNode(node, path);
-  }
-  if (t.isClassDeclaration(node) || t.isClassExpression(node)) {
-    const renderStatement = findRenderStatement(node.body);
-    if (renderStatement) {
-      return findReturnNode(renderStatement, path);
-    }
-  }
-}
-
-function findReturnNode(node: any, path: any) {
+function findReturnNode(node: any) {
   if (isJSXElement(node.body)) {
     return {
       node: node.body,
@@ -223,7 +204,25 @@ function findRenderStatement(node: any) {
   // throw new Error(`Find render statement failed`);
 }
 
-export function findIndex(arr: any[], index: number, fn: Function) {
+export function getReturnNode(
+  node: t.ArrowFunctionExpression | t.ClassDeclaration,
+) {
+  if (
+    t.isArrowFunctionExpression(node) ||
+    t.isFunctionDeclaration(node) ||
+    t.isFunctionExpression(node)
+  ) {
+    return findReturnNode(node);
+  }
+  if (t.isClassDeclaration(node) || t.isClassExpression(node)) {
+    const renderStatement = findRenderStatement(node.body);
+    if (renderStatement) {
+      return findReturnNode(renderStatement);
+    }
+  }
+}
+
+export function findIndex(arr: any[], index: number, fn: any) {
   if (index === 0) return 0;
 
   let foundCount = 0;
