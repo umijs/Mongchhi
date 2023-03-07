@@ -14,7 +14,10 @@ export function findImportNodes(programNode: t.Program) {
   return programNode.body.filter((n) => t.isImportDeclaration(n));
 }
 
-function findImportWithSource(importNodes: t.ImportDeclaration[], source: string) {
+function findImportWithSource(
+  importNodes: t.ImportDeclaration[],
+  source: string,
+) {
   for (const importNode of importNodes) {
     if (importNode.source.value === source) {
       return importNode;
@@ -22,10 +25,17 @@ function findImportWithSource(importNodes: t.ImportDeclaration[], source: string
   }
 }
 
-function findSpecifier(importNode: t.ImportDeclaration, specifier: t.ImportSpecifier) {
+function findSpecifier(
+  importNode: t.ImportDeclaration,
+  specifier: t.ImportSpecifier,
+) {
   for (const s of importNode.specifiers as t.ImportSpecifier[]) {
-    if (t.isImportDefaultSpecifier(specifier) && t.isImportDefaultSpecifier(s)) return true;
-    if ((specifier.imported as t.Identifier).name === (s.imported as t.Identifier).name) {
+    if (t.isImportDefaultSpecifier(specifier) && t.isImportDefaultSpecifier(s))
+      return true;
+    if (
+      (specifier.imported as t.Identifier).name ===
+      (s.imported as t.Identifier).name
+    ) {
       if (specifier.local.name === s.local.name) return true;
       throw new Error('specifier conflicts');
     }
@@ -33,7 +43,10 @@ function findSpecifier(importNode: t.ImportDeclaration, specifier: t.ImportSpeci
   return false;
 }
 
-function combineSpecifiers(newImportNode: t.ImportDeclaration, originImportNode: t.ImportDeclaration) {
+function combineSpecifiers(
+  newImportNode: t.ImportDeclaration,
+  originImportNode: t.ImportDeclaration,
+) {
   newImportNode.specifiers.forEach((specifier) => {
     if (!findSpecifier(originImportNode, specifier as t.ImportSpecifier)) {
       originImportNode.specifiers.push(specifier);
@@ -61,9 +74,15 @@ export function combineImportNodes(
   newImportNodes.forEach((newImportNode) => {
     // replace stylesName
     // TODO: 自动生成新的 name，不仅仅是 styles
-    if (stylesName !== 'styles' && newImportNode.source.value.charAt(0) === '.') {
+    if (
+      stylesName !== 'styles' &&
+      newImportNode.source.value.charAt(0) === '.'
+    ) {
       newImportNode.specifiers.forEach((specifier) => {
-        if (t.isImportDefaultSpecifier(specifier) && specifier.local.name === 'styles') {
+        if (
+          t.isImportDefaultSpecifier(specifier) &&
+          specifier.local.name === 'styles'
+        ) {
           specifier.local.name = stylesName;
         }
       });
@@ -75,7 +94,10 @@ export function combineImportNodes(
       const dir = basename(join(absolutePath, '..'));
       newImportNode.source = t.stringLiteral(`./${join(dir, importSource)}`);
     }
-    const originImportNode = findImportWithSource(originImportNodes, newImportNode.source.value);
+    const originImportNode = findImportWithSource(
+      originImportNodes,
+      newImportNode.source.value,
+    );
     if (!originImportNode) {
       programNode.body.unshift(newImportNode);
     } else {
@@ -105,7 +127,9 @@ export function isReactCreateElement(node: object) {
 }
 
 export function isJSXElement(node: object) {
-  return t.isJSXElement(node) || t.isJSXFragment(node) || isReactCreateElement(node);
+  return (
+    t.isJSXElement(node) || t.isJSXFragment(node) || isReactCreateElement(node)
+  );
 }
 
 export function haveChildren(node: any) {
@@ -131,12 +155,20 @@ export function isChildFunc(node: any) {
       node.children.some((child) => t.isJSXExpressionContainer(child)) &&
       // 并且没有一个 JSXElement 的时候，才不加 flag
       node.children.every((child) => !t.isJSXElement(child))) ||
-    (isReactCreateElement(node) && node.arguments.some((arg: any) => t.isArrowFunctionExpression(arg)))
+    (isReactCreateElement(node) &&
+      node.arguments.some((arg: any) => t.isArrowFunctionExpression(arg)))
   );
 }
 
-export function getReturnNode(node: t.ArrowFunctionExpression | t.ClassDeclaration, path: any) {
-  if (t.isArrowFunctionExpression(node) || t.isFunctionDeclaration(node) || t.isFunctionExpression(node)) {
+export function getReturnNode(
+  node: t.ArrowFunctionExpression | t.ClassDeclaration,
+  path: any,
+) {
+  if (
+    t.isArrowFunctionExpression(node) ||
+    t.isFunctionDeclaration(node) ||
+    t.isFunctionExpression(node)
+  ) {
     return findReturnNode(node, path);
   }
   if (t.isClassDeclaration(node) || t.isClassExpression(node)) {
@@ -180,7 +212,11 @@ function findReturnNode(node: any, path: any) {
 
 function findRenderStatement(node: any) {
   for (const n of node.body) {
-    if (t.isClassMethod(n) && t.isIdentifier(n.key) && n.key.name === 'render') {
+    if (
+      t.isClassMethod(n) &&
+      t.isIdentifier(n.key) &&
+      n.key.name === 'render'
+    ) {
       return n;
     }
   }
@@ -206,6 +242,12 @@ export function findIndex(arr: any[], index: number, fn: Function) {
 export function parseContent(code: string) {
   return parser.parse(code, {
     sourceType: 'module',
-    plugins: ['jsx', 'decorators-legacy', 'typescript', 'classProperties', 'dynamicImport'],
+    plugins: [
+      'jsx',
+      'decorators-legacy',
+      'typescript',
+      'classProperties',
+      'dynamicImport',
+    ],
   });
 }

@@ -2,6 +2,9 @@
   "name": "@mongchhi/plugin-mongchhi",
   "version": "0.0.1-alpha.1",
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -12,16 +15,13 @@
     "dev": "father dev",
     "watch": "father dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@mongchhi/types": "^0.0.1-alpha.1",
     "@umijs/utils": "^4.0.53",
     "node-fetch": "^3.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
 }

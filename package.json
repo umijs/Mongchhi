@@ -1,37 +1,46 @@
 {
   "name": "mongchhi",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "lerna run build",
-    "dev": "lerna run dev",
-    "release": "lerna publish --force-publish=*",
-    "prepublish": "pnpm run build",
-    "simple": "cd examples/simple && pnpm start",
-    "test": "vitest run",
-    "callme": "node packages/mongchhi/bin/mongchhi.js"
+  "keywords": [],
+  "homepage": "https://github.com/umijs/Mongchhi#readme",
+  "bugs": {
+    "url": "https://github.com/umijs/Mongchhi/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/umijs/Mongchhi.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/umijs/Mongchhi/issues"
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build",
+    "callme": "node packages/mongchhi/bin/mongchhi.js",
+    "dev": "lerna run dev",
+    "format": "prettier --cache --write .",
+    "prepublish": "pnpm run build",
+    "release": "lerna publish --force-publish=*",
+    "simple": "cd examples/simple && pnpm start",
+    "test": "vitest run"
   },
-  "packageManager": "pnpm@7.24.2",
-  "homepage": "https://github.com/umijs/Mongchhi#readme",
+  "pre-commit": [
+    "format",
+    "test"
+  ],
   "devDependencies": {
     "@alita/test": "1.0.0-beta.5",
     "@types/node": "^18.0.0",
     "father": "^4.1.5",
     "lerna": "^6.5.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.8.4",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "prettier-plugin-packagejson": "^2.4.3",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
     "vitest": "^0.29.2"
-  }
+  },
+  "packageManager": "pnpm@7.24.2"
 }

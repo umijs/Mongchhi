@@ -13,14 +13,26 @@ import { winPath } from 'umi/plugin-utils';
 
 export default () => {
   function buildGUmiUIFlag(opts) {
-    const { index, filename, jsx, inline, content, GUmiUIFlag = 'GUmiUIFlag' } = opts;
+    const {
+      index,
+      filename,
+      jsx,
+      inline,
+      content,
+      GUmiUIFlag = 'GUmiUIFlag',
+    } = opts;
     if (jsx) {
       const attrs = [
-        t.jsxAttribute(t.jsxIdentifier('filename'), t.stringLiteral(`${filename}`)),
+        t.jsxAttribute(
+          t.jsxIdentifier('filename'),
+          t.stringLiteral(`${filename}`),
+        ),
         t.jsxAttribute(t.jsxIdentifier('index'), t.stringLiteral(`${index}`)),
       ];
       if (inline) {
-        attrs.push(t.jsxAttribute(t.jsxIdentifier('inline'), t.stringLiteral('true')));
+        attrs.push(
+          t.jsxAttribute(t.jsxIdentifier('inline'), t.stringLiteral('true')),
+        );
       }
       return t.jsxElement(
         t.jsxOpeningElement(t.jsxIdentifier(GUmiUIFlag), attrs),
@@ -30,17 +42,25 @@ export default () => {
       );
     }
     const attrs = [
-      t.objectProperty(t.identifier('filename'), t.stringLiteral(`${filename}`)),
+      t.objectProperty(
+        t.identifier('filename'),
+        t.stringLiteral(`${filename}`),
+      ),
       t.objectProperty(t.identifier('index'), t.stringLiteral(`${index}`)),
     ];
     if (inline) {
-      attrs.push(t.objectProperty(t.identifier('inline'), t.stringLiteral('true')));
+      attrs.push(
+        t.objectProperty(t.identifier('inline'), t.stringLiteral('true')),
+      );
     }
-    return t.callExpression(t.memberExpression(t.identifier('React'), t.identifier('createElement')), [
-      t.identifier(GUmiUIFlag),
-      t.objectExpression(attrs),
-      ...(content ? [t.stringLiteral(content)] : []),
-    ]);
+    return t.callExpression(
+      t.memberExpression(t.identifier('React'), t.identifier('createElement')),
+      [
+        t.identifier(GUmiUIFlag),
+        t.objectExpression(attrs),
+        ...(content ? [t.stringLiteral(content)] : []),
+      ],
+    );
   }
 
   function addFlagToIndex(nodes, i, { index, filename, jsx, GUmiUIFlag }) {
@@ -92,17 +112,41 @@ export default () => {
         replace(
           t.isJSXElement(node)
             ? t.jsxFragment(t.jsxOpeningFragment(), t.jsxClosingFragment(), [
-                buildGUmiUIFlag({ index: 0, filename, jsx: true, GUmiUIFlag }) as any,
+                buildGUmiUIFlag({
+                  index: 0,
+                  filename,
+                  jsx: true,
+                  GUmiUIFlag,
+                }) as any,
                 node,
                 buildGUmiUIFlag({ index: 1, filename, jsx: true, GUmiUIFlag }),
               ])
-            : t.callExpression(t.memberExpression(t.identifier('React'), t.identifier('createElement')), [
-                t.memberExpression(t.identifier('React'), t.identifier('Fragment')),
-                t.nullLiteral(),
-                buildGUmiUIFlag({ index: 0, filename, jsx: false, GUmiUIFlag }),
-                node,
-                buildGUmiUIFlag({ index: 1, filename, jsx: false, GUmiUIFlag }),
-              ]),
+            : t.callExpression(
+                t.memberExpression(
+                  t.identifier('React'),
+                  t.identifier('createElement'),
+                ),
+                [
+                  t.memberExpression(
+                    t.identifier('React'),
+                    t.identifier('Fragment'),
+                  ),
+                  t.nullLiteral(),
+                  buildGUmiUIFlag({
+                    index: 0,
+                    filename,
+                    jsx: false,
+                    GUmiUIFlag,
+                  }),
+                  node,
+                  buildGUmiUIFlag({
+                    index: 1,
+                    filename,
+                    jsx: false,
+                    GUmiUIFlag,
+                  }),
+                ],
+              ),
         );
       }
     } else {
@@ -126,7 +170,8 @@ export default () => {
 
         // antd 和 @alipay/tech-ui 里除部分用于布局的组件之外，其他组件作为根组件不会插入编辑区
         if (
-          (source.value === 'antd' || source.value === '@alipay/bigfish/antd') &&
+          (source.value === 'antd' ||
+            source.value === '@alipay/bigfish/antd') &&
           t.isImportSpecifier(p.node) &&
           t.isIdentifier(p.node.imported) &&
           !['Card', 'Grid', 'Layout'].includes(p.node.imported.name)
@@ -171,7 +216,10 @@ export default () => {
    * @param filename 路径名
    */
   const checkPathFilename = (filename: string): boolean => {
-    if (winPath(filename).indexOf('pages/') > -1 || winPath(filename).indexOf('page/') > -1) {
+    if (
+      winPath(filename).indexOf('pages/') > -1 ||
+      winPath(filename).indexOf('page/') > -1
+    ) {
       return true;
     }
     return false;
@@ -212,7 +260,11 @@ export default () => {
           const ret = getReturnNode(d, path);
           if (ret) {
             const { node: retNode, replace } = ret;
-            if (retNode && !isInBlackList(retNode, path) && checkPathFilename(filename)) {
+            if (
+              retNode &&
+              !isInBlackList(retNode, path) &&
+              checkPathFilename(filename)
+            ) {
               addUmiUIFlag(retNode, {
                 filename: winPath(filename),
                 replace,
@@ -226,7 +278,13 @@ export default () => {
       CallExpression(path, state) {
         const {
           filename,
-          opts: { BLOCK_LAYOUT_PREFIX, INSERT_BLOCK_PLACEHOLDER, UMI_UI_FLAG_PLACEHOLDER, doTransform, GUmiUIFlag },
+          opts: {
+            BLOCK_LAYOUT_PREFIX,
+            INSERT_BLOCK_PLACEHOLDER,
+            UMI_UI_FLAG_PLACEHOLDER,
+            doTransform,
+            GUmiUIFlag,
+          },
         } = state;
 
         assert(doTransform, 'opts.doTransform must supplied');
@@ -285,7 +343,10 @@ export default () => {
           if (
             t.isObjectExpression(args[1]) &&
             args[1].properties.some(
-              (property) => t.isProperty(property) && property.key?.name === 'inline' && property.value?.value === true,
+              (property) =>
+                t.isProperty(property) &&
+                property.key?.name === 'inline' &&
+                property.value?.value === true,
             )
           ) {
             inline = true;

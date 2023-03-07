@@ -1,6 +1,10 @@
 import * as t from '@umijs/bundler-utils/compiled/babel/types';
 
-export function importNameformSource(ast: t.File, name: string, source: string): t.File {
+export function importNameformSource(
+  ast: t.File,
+  name: string,
+  source: string,
+): t.File {
   // Find any ImportDeclaration nodes for the given source
   const importNode = ast.program.body.find((node) => {
     return node.type === 'ImportDeclaration' && node.source.value === source;

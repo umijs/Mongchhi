@@ -2,24 +2,24 @@
   "name": "@mongchhi/preset-mongchhi",
   "version": "0.0.1-alpha.1",
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "father dev",
-    "build": "father build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
+    "build": "father build",
+    "dev": "father dev"
   },
   "dependencies": {
     "@mongchhi/plugin-mongchhi": "^0.0.1-alpha.1",
     "@mongchhi/plugin-socket": "^0.0.1-alpha.1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
 }

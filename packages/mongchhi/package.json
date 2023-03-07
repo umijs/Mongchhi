@@ -2,6 +2,11 @@
   "name": "mongchhi",
   "version": "0.0.1-alpha.1",
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "hi": "bin/mongchhi.js",
     "mc": "bin/mongchhi.js",
@@ -11,16 +16,11 @@
     "bin",
     "dist"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "build": "father build",
-    "dev": "father dev",
-    "callme": "node bin/mongchhi.js"
+    "callme": "node bin/mongchhi.js",
+    "dev": "father dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@mongchhi/preset-mongchhi": "^0.0.1-alpha.1",
     "@umijs/core": "^4.0.53",
