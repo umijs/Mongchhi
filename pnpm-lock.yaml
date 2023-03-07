@@ -8,6 +8,7 @@ importers:
       '@types/node': ^18.0.0
       father: ^4.1.5
       husky: ^8.0.0
+      is-ci: ^3.0.1
       lerna: ^6.5.1
       prettier: ^2.8.4
       prettier-plugin-organize-imports: ^3.2.2
@@ -20,6 +21,7 @@ importers:
       '@types/node': 18.14.1
       father: 4.1.5_@types+node@18.14.1
       husky: registry.npmjs.org/husky/8.0.3
+      is-ci: registry.npmjs.org/is-ci/3.0.1
       lerna: 6.5.1
       prettier: registry.npmjs.org/prettier/2.8.4
       prettier-plugin-organize-imports: registry.npmjs.org/prettier-plugin-organize-imports/3.2.2_silln3pw57har7jydmecgzoypa
@@ -1135,10 +1137,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /ci-info/2.0.0:
-    resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==}
-    dev: true
-
   /clean-stack/2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
     engines: {node: '>=6'}
@@ -2208,13 +2206,6 @@ packages:
     dependencies:
       binary-extensions: 2.2.0
 
-  /is-ci/2.0.0:
-    resolution: {integrity: sha512-YfJT7rkpQB0updsdHLGWrvhBJfcfzNNawYDNIyQXJz0IViGf75O8EBPKSdvw2rF+LGCsX4FZ8tcr3b19LcZq4w==}
-    hasBin: true
-    dependencies:
-      ci-info: 2.0.0
-    dev: true
-
   /is-core-module/2.11.0:
     resolution: {integrity: sha512-RRjxlvLDkD1YJwDbroBHMb+cukurkDWNyHx7D3oNB5x9rb5ogcksMC5wHCadcXoo67gVr/+3GFySh3134zi6rw==}
     dependencies:
@@ -2435,7 +2426,7 @@ packages:
       import-local: 3.1.0
       init-package-json: 3.0.2
       inquirer: 8.2.5
-      is-ci: 2.0.0
+      is-ci: registry.npmjs.org/is-ci/2.0.0
       is-stream: 2.0.0
       js-yaml: 4.1.0
       libnpmaccess: 6.0.3
@@ -8140,6 +8131,12 @@ packages:
     optionalDependencies:
       fsevents: registry.npmjs.org/fsevents/2.3.2
 
+  registry.npmjs.org/ci-info/2.0.0:
+    resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/ci-info/-/ci-info-2.0.0.tgz}
+    name: ci-info
+    version: 2.0.0
+    dev: true
+
   registry.npmjs.org/ci-info/3.8.0:
     resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/ci-info/-/ci-info-3.8.0.tgz}
     name: ci-info
@@ -10158,6 +10155,24 @@ packages:
     name: is-callable
     version: 1.2.7
     engines: {node: '>= 0.4'}
+
+  registry.npmjs.org/is-ci/2.0.0:
+    resolution: {integrity: sha512-YfJT7rkpQB0updsdHLGWrvhBJfcfzNNawYDNIyQXJz0IViGf75O8EBPKSdvw2rF+LGCsX4FZ8tcr3b19LcZq4w==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/is-ci/-/is-ci-2.0.0.tgz}
+    name: is-ci
+    version: 2.0.0
+    hasBin: true
+    dependencies:
+      ci-info: registry.npmjs.org/ci-info/2.0.0
+    dev: true
+
+  registry.npmjs.org/is-ci/3.0.1:
+    resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/is-ci/-/is-ci-3.0.1.tgz}
+    name: is-ci
+    version: 3.0.1
+    hasBin: true
+    dependencies:
+      ci-info: registry.npmjs.org/ci-info/3.8.0
+    dev: true
 
   registry.npmjs.org/is-core-module/2.11.0:
     resolution: {integrity: sha512-RRjxlvLDkD1YJwDbroBHMb+cukurkDWNyHx7D3oNB5x9rb5ogcksMC5wHCadcXoo67gVr/+3GFySh3134zi6rw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/is-core-module/-/is-core-module-2.11.0.tgz}
