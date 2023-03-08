@@ -1,11 +1,15 @@
 // TODO: show 命令好怪啊！但是 dev watch 和 preview 都被占用了
-import { IApi } from '@mongchhi/types';
+import type { IApi } from '@mongchhi/types';
 import { createHttpsServer, createProxy } from '@umijs/bundler-utils';
 import express from '@umijs/bundler-utils/compiled/express';
+import { createWebSocketServer } from '@umijs/bundler-webpack/dist/server/ws';
 import { chalk, logger, portfinder, winPath } from '@umijs/utils';
 import http from 'http';
 import { dirname, join } from 'path';
 import sirv from 'sirv';
+import url from 'url';
+
+const clients: any = {};
 
 export default (api: IApi) => {
   api.registerCommand({
@@ -20,6 +24,7 @@ export default (api: IApi) => {
       );
 
       const app = express();
+      let ws: ReturnType<typeof createWebSocketServer>;
 
       // cros
       app.use((_req, res, next) => {
@@ -66,7 +71,48 @@ export default (api: IApi) => {
       if (!server) {
         return null;
       }
+      ws = createWebSocketServer(server);
+      // 将 socket 连接共享给插件
+      (global as any).g_mongchhi_ws = ws;
 
+      // TODO: 与 plugin-socket 中的逻辑相同，应该有个统一的地方维护
+      ws.wss.on('connection', (socket: any, req: any) => {
+        const urlParts = url.parse(req.url, true);
+        const query = urlParts.query;
+        const who = query.who as string;
+        if (who && !clients[who]) {
+          clients[who] = true;
+          // 接收前端的数据
+          socket.on('message', async (msg: any) => {
+            let data: any = {};
+            try {
+              data = JSON.parse(msg);
+            } catch (error) {
+              data = {};
+            }
+            if (data.type) {
+              switch (data.type) {
+                case 'call':
+                  console.log('[MongChhi] call me!', data?.payload?.type ?? '');
+                  ws.send(
+                    JSON.stringify({
+                      type: data?.payload?.type ?? 'call',
+                      payload: data?.payload,
+                    }),
+                  );
+                  break;
+                default:
+                  await api.applyPlugins({
+                    key: 'onMongChhiSocket',
+                    type: api.ApplyPluginsType.event,
+                    args: { ...ws, ...data },
+                  });
+                  break;
+              }
+            }
+          });
+        }
+      });
       const port = await portfinder.getPortPromise({
         port: parseInt(String(api.args.port || 3000), 10),
       });
