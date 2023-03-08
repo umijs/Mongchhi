@@ -18,7 +18,10 @@ export class Service extends CoreService {
       cwd,
       defaultConfigFiles: DEFAULT_CONFIG_FILES,
       frameworkName: FRAMEWORK_NAME,
-      presets: [require.resolve('@mongchhi/preset-mongchhi')],
+      presets: [
+        require.resolve('../presets/umiPreset'),
+        require.resolve('@mongchhi/preset-mongchhi'),
+      ],
       plugins: [require.resolve('../commands/show')],
     });
   }
