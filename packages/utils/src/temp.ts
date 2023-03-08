@@ -48,6 +48,10 @@ class TempFileHelper<InitValue> {
   }
 }
 
-const localUmiAppData = new TempFileHelper<object>('cache', 'localUmiAppData', {});
+const localUmiAppData = new TempFileHelper<object>(
+  'cache',
+  'localUmiAppData',
+  {},
+);
 
 export { localUmiAppData };

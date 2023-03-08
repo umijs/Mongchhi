@@ -1,5 +1,6 @@
 // TODO: show 命令好怪啊！但是 dev watch 和 preview 都被占用了
 import type { IApi } from '@mongchhi/types';
+import { localUmiAppData } from '@mongchhi/utils';
 import { createHttpsServer, createProxy } from '@umijs/bundler-utils';
 import express from '@umijs/bundler-utils/compiled/express';
 import { createWebSocketServer } from '@umijs/bundler-webpack/dist/server/ws';
@@ -92,6 +93,15 @@ export default (api: IApi) => {
             }
             if (data.type) {
               switch (data.type) {
+                case 'app-data':
+                  // 发送 localUmiAppData
+                  ws.send(
+                    JSON.stringify({
+                      type: 'app-data',
+                      payload: localUmiAppData.get(),
+                    }),
+                  );
+                  break;
                 case 'call':
                   console.log('[MongChhi] call me!', data?.payload?.type ?? '');
                   ws.send(

@@ -1,5 +1,5 @@
 {
-  "name": "@mongchhi/plugin-mongchhi",
+  "name": "@mongchhi/utils",
   "version": "0.0.1-alpha.1",
   "description": "",
   "keywords": [],
@@ -17,9 +17,7 @@
   },
   "dependencies": {
     "@mongchhi/types": "^0.0.1-alpha.1",
-    "@mongchhi/utils": "^0.0.1-alpha.1",
-    "@umijs/utils": "^4.0.53",
-    "node-fetch": "^3.3.0"
+    "@umijs/utils": "^4.0.53"
   },
   "publishConfig": {
     "access": "public"

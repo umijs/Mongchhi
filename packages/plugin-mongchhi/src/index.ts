@@ -1,6 +1,6 @@
 import { IApi } from '@mongchhi/types';
+import { localUmiAppData } from '@mongchhi/utils';
 import { logger } from '@umijs/utils';
-import { localUmiAppData } from './temp';
 
 const getAppDataUrl = (port: number | string) => {
   return `http://localhost:${port}/__umi/api/app-data`;
