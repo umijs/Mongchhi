@@ -1,5 +1,6 @@
 import { IApi } from '@mongchhi/types';
 import { logger } from '@umijs/utils';
+import { localUmiAppData } from './temp';
 
 const getAppDataUrl = (port: number | string) => {
   return `http://localhost:${port}/__umi/api/app-data`;
@@ -85,10 +86,10 @@ export default (api: IApi) => {
     description: 'call to mongchhi',
     async fn() {
       logger.info('I am here!');
-      // TODO: 读取 local all umi app
+      // 读取 appData 缓存
       // 从缓存页面中读取，或者从页面中打开磁盘目录
       // find live umi app
-      const liveUmiApp = {} as any;
+      const liveUmiApp = localUmiAppData.get();
       logger.profile('find', 'find live umi app...');
       // 寻找占用中的端口
       const portsInUse = await findPortsInUse();
@@ -119,17 +120,8 @@ export default (api: IApi) => {
           );
         });
       }
-      // TODO: 通过找到的 umi 项目在本地的地址，在缓存文件中自动添加 local all umi app
-      try {
-        const fs = require('fs');
-        fs.writeFile(
-          './localUmiAppData.json',
-          JSON.stringify(liveUmiApp),
-          (err: any) => {
-            if (err) throw err;
-          },
-        );
-      } catch (e) {}
+      // 写入 appData 缓存
+      localUmiAppData.set(liveUmiApp);
     },
   });
 };
