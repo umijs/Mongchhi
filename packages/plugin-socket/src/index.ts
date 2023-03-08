@@ -4,10 +4,10 @@ import url from 'url';
 import { DIR_NAME, MESSAGE_TYPE, TEMPLATES_DIR } from './constants';
 
 const clients: any = {};
+
+// TODO: socket 插件是否需要拆分前端和服务端
+// TODO: socket client 应该支持连接到 mongchhi，就是说它不仅要连接自己的服务，还要连接统一的 mongchhi 服务
 export default (api: IApi) => {
-  // TODO: 兼容 mongchhi
-  // @ts-ignore
-  if (api.service.opts.frameworkName === 'mongchhi') return;
   api.register({
     key: 'onGenerateFiles',
     fn: async () => {
@@ -35,10 +35,8 @@ export { createSocket, socket } from './client';
   api.onDevCompileDone(() => {
     // only dev running
     if (!['dev'].includes(api.name)) return;
-    // @ts-ignore
-    if (global.g_umi_ws) {
-      // @ts-ignore
-      const g_ws = global.g_umi_ws;
+    const g_ws = (global as any)?.g_mongchhi_ws || (global as any)?.g_umi_ws;
+    if (g_ws) {
       g_ws.wss.on('connection', async (ws: any, req: any) => {
         const urlParts = url.parse(req.url, true);
         const query = urlParts.query;
