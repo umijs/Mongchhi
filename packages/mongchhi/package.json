@@ -28,6 +28,7 @@
     "@umijs/bundler-utils": "^4.0.35",
     "@umijs/bundler-webpack": "^4.0.53",
     "@umijs/core": "^4.0.53",
+    "@umijs/preset-umi": "^4.0.56",
     "@umijs/utils": "^4.0.53",
     "sirv": "^2.0.2"
   },
