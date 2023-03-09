@@ -31,7 +31,7 @@ function findPortsInUse(): number[] {
             const matcher = /[:.](\d+)\s/.exec(line);
             if (matcher?.[1]) {
               const port = Number(matcher[1]);
-              if (port > 1025 && port < 65535) {
+              if (port >= 1025 && port <= 65535) {
                 ports.add(port);
               }
             }
