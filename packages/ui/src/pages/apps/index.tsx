@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { Button } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { socket } from 'umi';
 
 function AppsPage() {
@@ -23,6 +24,7 @@ function AppsPage() {
   }, []);
   return (
     <div>
+      <Button>Clike me!</Button>
       <h2
         onClick={() => {
           socket.send(
