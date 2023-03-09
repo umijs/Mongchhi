@@ -1,3 +1,4 @@
+import { localUmiAppData } from '@mongchhi/utils';
 import { join } from 'path';
 import { IApi } from 'umi';
 import url from 'url';
@@ -60,6 +61,15 @@ export { createSocket, socket } from './client';
                 case MESSAGE_TYPE.warnings:
                   // Do nothing webpack-hmr
                   // 过滤 hmr 消息
+                  break;
+                case 'app-data':
+                  // 发送 localUmiAppData
+                  ws.send(
+                    JSON.stringify({
+                      type: 'app-data',
+                      payload: localUmiAppData.get(),
+                    }),
+                  );
                   break;
                 case 'call':
                   console.log('[MongChhi] call me!', data?.payload?.type ?? '');

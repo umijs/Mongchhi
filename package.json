@@ -29,7 +29,8 @@
     "prepublish": "pnpm run build",
     "release": "lerna publish --force-publish=*",
     "simple": "cd examples/simple && pnpm start",
-    "test": "vitest run"
+    "test": "vitest run",
+    "ui": "cd packages/ui && pnpm start"
   },
   "devDependencies": {
     "@alita/test": "1.0.0-beta.5",
