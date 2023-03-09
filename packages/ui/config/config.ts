@@ -2,9 +2,18 @@ import { defineConfig } from 'umi';
 
 export default defineConfig({
   plugins: [
-    '@umijs/plugins/dist/antd',
+    require.resolve('@umijs/plugins/dist/locale'),
     'umi-plugin-route-mdx',
     '@mongchhi/plugin-socket',
   ],
-  antd: {},
+  icons: {
+    autoInstall: {},
+  },
+  // mfsu: false,
+  locale: {
+    // 默认使用 src/locales/zh-CN.ts 作为多语言文件
+    default: 'zh-CN',
+    baseSeparator: '-',
+    antd: false,
+  },
 });
