@@ -93,12 +93,12 @@ export default (api: IApi) => {
       logger.profile('find', 'find live umi app...');
       // 寻找占用中的端口
       const portsInUse = await findPortsInUse();
-      for (const port of portsInUse) {
-        const json: any = await getUmiAppByPort(port);
+      const res = await Promise.all(portsInUse.map((port) => getUmiAppByPort(port)));
+      res.forEach((json) => {
         if (json && json?.cwd) {
           liveUmiApp[json?.cwd] = json;
         }
-      }
+      });
       logger.profile('find');
       const keys = Object.keys(liveUmiApp);
       if (keys && keys.length > 0) {
