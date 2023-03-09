@@ -154,9 +154,11 @@ importers:
   packages/ui:
     specifiers:
       '@alita/flow': ^3.1.0
+      '@iconify-json/grommet-icons': 1.1.6
       '@mongchhi/plugin-socket': ^0.0.1-alpha.1
       '@umijs/plugins': ^4.0.56
       antd: ^5.3.0
+      react-color: ^2.19.3
       umi: ^4.0.53
       umi-plugin-route-mdx: ^1.0.0
     dependencies:
@@ -164,8 +166,11 @@ importers:
       '@mongchhi/plugin-socket': link:../plugin-socket
       '@umijs/plugins': registry.npmjs.org/@umijs/plugins/4.0.56_antd@5.3.0
       antd: registry.npmjs.org/antd/5.3.0
+      react-color: registry.npmjs.org/react-color/2.19.3
       umi: registry.npmjs.org/umi/4.0.53
       umi-plugin-route-mdx: registry.npmjs.org/umi-plugin-route-mdx/1.0.0
+    devDependencies:
+      '@iconify-json/grommet-icons': registry.npmjs.org/@iconify-json/grommet-icons/1.1.6
 
   packages/utils:
     specifiers:
@@ -7597,6 +7602,14 @@ packages:
     version: 1.2.1
     dev: true
 
+  registry.npmjs.org/@iconify-json/grommet-icons/1.1.6:
+    resolution: {integrity: sha512-5rSWj7mYxSSUbCYh0/KX7fQo0PSd2qh73zhzmkpOzVmCJRatukwMxQSvyInKEkyW7Few2gI+p8dWwg1I5sTi5w==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@iconify-json/grommet-icons/-/grommet-icons-1.1.6.tgz}
+    name: '@iconify-json/grommet-icons'
+    version: 1.1.6
+    dependencies:
+      '@iconify/types': registry.npmjs.org/@iconify/types/2.0.0
+    dev: true
+
   registry.npmjs.org/@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz}
     name: '@iconify/types'
@@ -7615,6 +7628,14 @@ packages:
       local-pkg: registry.npmjs.org/local-pkg/0.4.3
     transitivePeerDependencies:
       - supports-color
+
+  registry.npmjs.org/@icons/material/0.2.4:
+    resolution: {integrity: sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@icons/material/-/material-0.2.4.tgz}
+    name: '@icons/material'
+    version: 0.2.4
+    peerDependencies:
+      react: '*'
+    dev: false
 
   registry.npmjs.org/@istanbuljs/load-nyc-config/1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz}
@@ -9162,7 +9183,7 @@ packages:
       is-glob: registry.npmjs.org/is-glob/4.0.3
       semver: registry.npmjs.org/semver/7.3.8
       tsutils: registry.npmjs.org/tsutils/3.21.0_typescript@4.9.5
-      typescript: 4.9.5
+      typescript: registry.npmjs.org/typescript/4.9.5
     transitivePeerDependencies:
       - supports-color
 
@@ -15088,6 +15109,12 @@ packages:
     dependencies:
       p-locate: registry.npmjs.org/p-locate/5.0.0
 
+  registry.npmjs.org/lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz}
+    name: lodash-es
+    version: 4.17.21
+    dev: false
+
   registry.npmjs.org/lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz}
     name: lodash.debounce
@@ -15223,6 +15250,12 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/markdown-table/-/markdown-table-3.0.3.tgz}
     name: markdown-table
     version: 3.0.3
+    dev: false
+
+  registry.npmjs.org/material-colors/1.2.6:
+    resolution: {integrity: sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/material-colors/-/material-colors-1.2.6.tgz}
+    name: material-colors
+    version: 1.2.6
     dev: false
 
   registry.npmjs.org/mathml-tag-names/2.1.3:
@@ -18388,6 +18421,22 @@ packages:
       rc-util: registry.npmjs.org/rc-util/5.28.0
     dev: false
 
+  registry.npmjs.org/react-color/2.19.3:
+    resolution: {integrity: sha512-LEeGE/ZzNLIsFWa1TMe8y5VYqr7bibneWmvJwm1pCn/eNmrabWDh659JSPn9BuaMpEfU83WTOJfnCcjDZwNQTA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/react-color/-/react-color-2.19.3.tgz}
+    name: react-color
+    version: 2.19.3
+    peerDependencies:
+      react: '*'
+    dependencies:
+      '@icons/material': registry.npmjs.org/@icons/material/0.2.4
+      lodash: registry.npmjs.org/lodash/4.17.21
+      lodash-es: registry.npmjs.org/lodash-es/4.17.21
+      material-colors: registry.npmjs.org/material-colors/1.2.6
+      prop-types: registry.npmjs.org/prop-types/15.8.1
+      reactcss: registry.npmjs.org/reactcss/1.2.3
+      tinycolor2: registry.npmjs.org/tinycolor2/1.6.0
+    dev: false
+
   registry.npmjs.org/react-dom/18.1.0_react@18.1.0:
     resolution: {integrity: sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/react-dom/-/react-dom-18.1.0.tgz}
     id: registry.npmjs.org/react-dom/18.1.0
@@ -20105,7 +20154,7 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: registry.npmjs.org/tslib/1.14.1
-      typescript: 4.9.5
+      typescript: registry.npmjs.org/typescript/4.9.5
 
   registry.npmjs.org/tsx/3.12.3:
     resolution: {integrity: sha512-Wc5BFH1xccYTXaQob+lEcimkcb/Pq+0en2s+ruiX0VEIC80nV7/0s7XRahx8NnsoCnpCVUPz8wrqVSPi760LkA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/tsx/-/tsx-3.12.3.tgz}
