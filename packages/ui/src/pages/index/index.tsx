@@ -50,7 +50,9 @@ function HomePage() {
       ))}
       {Object.keys(appData).length > 0 && (
         <div>
-          <button type='submit' onClick={refreshAppData}>refresh</button>
+          <button type="submit" onClick={refreshAppData}>
+            refresh
+          </button>
         </div>
       )}
     </div>
