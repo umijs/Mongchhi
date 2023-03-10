@@ -18,4 +18,17 @@ export default (api: IApi) => {
       }));
     }
   });
+  api.onMongChhiSocket(async ({ type, send }) => {
+    switch (type) {
+      case 'app-data':
+        // 发送 localUmiAppData
+        send(
+          JSON.stringify({
+            type: 'app-data',
+            payload: localUmiAppData.get(),
+          }),
+        );
+        break;
+    }
+  });
 };

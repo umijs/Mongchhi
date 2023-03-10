@@ -1,5 +1,5 @@
 interface MongChhiScoket extends WebSocket {
-  listen: (callback: Subscription<CallBackProps>) => Destructor;
+  listen: (callback: Subscription<SocketAction>) => Destructor;
 }
 let socket: MongChhiScoket;
 
@@ -24,13 +24,13 @@ class EventEmitter<T> {
     return () => this.subscriptions.delete(subscription);
   };
 }
-interface CallBackProps {
+interface SocketAction {
   type: string;
   payload?: any;
   send?: any;
 }
 
-const socketEmitter = new EventEmitter<CallBackProps>();
+const socketEmitter = new EventEmitter<SocketAction>();
 
 function getSocketHost() {
   const url: any = location;
@@ -48,7 +48,7 @@ export function createSocket() {
   socket = new WebSocket(getSocketHost(), 'webpack-hmr');
   let pingTimer: null = null;
 
-  socket.listen = (callback: Subscription<CallBackProps>) => {
+  socket.listen = (callback: Subscription<SocketAction>) => {
     return socketEmitter.useSubscription(callback);
   };
 
