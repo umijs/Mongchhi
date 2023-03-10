@@ -37,7 +37,6 @@ export { createSocket, socket } from './client';
     ];
   });
   api.onDevCompileDone(() => {
-    console.log('-------------------- onDevCompileDone', api.name);
     // only dev running
     if (!['dev'].includes(api.name)) return;
     const g_ws: GlobalWebSocketServer =
