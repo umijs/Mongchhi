@@ -1,5 +1,5 @@
 interface MongChhiScoket extends WebSocket {
-  listen: (callback: Subscription<SocketAction>) => Destructor;
+  listen: (callback: Subscription<SocketAction>) => any;
 }
 let socket: MongChhiScoket;
 
@@ -45,14 +45,15 @@ export function createSocket() {
   if (socket && socket.readyState === WebSocket.OPEN) {
     return socket;
   }
-  socket = new WebSocket(getSocketHost(), 'webpack-hmr');
-  let pingTimer: null = null;
+  socket = new WebSocket(getSocketHost(), 'webpack-hmr') as MongChhiScoket;
+  let pingTimer: NodeJS.Timer;
 
   socket.listen = (callback: Subscription<SocketAction>) => {
     return socketEmitter.useSubscription(callback);
   };
 
-  socket.onmessage = async ({ data }) => {
+  socket.onmessage = async (message) => {
+    let { data } = message;
     data = JSON.parse(data);
     switch (data.type) {
       case 'connected':
