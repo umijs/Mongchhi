@@ -71,7 +71,11 @@ export default (api: IApi) => {
       ws = createWebSocketServer(server);
       // 将 socket 连接共享给插件
       (global as any).g_mongchhi_ws = ws;
-
+      // onDevCompileDone 在 umi dev 的时候才会触发，这里手动执行一下
+      api.applyPlugins({
+        key: 'onDevCompileDone',
+        args: {},
+      });
       const port = await portfinder.getPortPromise({
         port: parseInt(String(api.args.port || 3000), 10),
       });
