@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@alita/flow": "^3.1.0",
-    "@mongchhi/plugin-socket": "^0.0.1-alpha.1",
+    "@mongchhi/preset-mongchhi": "^0.0.1-alpha.1",
     "@umijs/plugins": "^4.0.56",
     "antd": "^5.3.0",
     "react-color": "^2.19.3",

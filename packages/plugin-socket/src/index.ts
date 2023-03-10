@@ -1,5 +1,8 @@
-import { IApi } from '@mongchhi/types';
-import { localUmiAppData } from '@mongchhi/utils';
+import type {
+  GlobalWebSocketServer,
+  IApi,
+  SocketAction,
+} from '@mongchhi/types';
 import { join } from 'path';
 import url from 'url';
 import { DIR_NAME, MESSAGE_TYPE, TEMPLATES_DIR } from './constants';
@@ -36,9 +39,10 @@ export { createSocket, socket } from './client';
   api.onDevCompileDone(() => {
     // only dev running
     if (!['dev'].includes(api.name)) return;
-    const g_ws = (global as any)?.g_mongchhi_ws || (global as any)?.g_umi_ws;
+    const g_ws: GlobalWebSocketServer =
+      (global as any)?.g_mongchhi_ws || (global as any)?.g_umi_ws;
     if (g_ws) {
-      g_ws.wss.on('connection', async (ws: any, req: any) => {
+      g_ws.wss.on('connection', async (ws, req: any) => {
         const urlParts = url.parse(req.url, true);
         const query = urlParts.query;
         const who = query.who as string;
@@ -46,48 +50,39 @@ export { createSocket, socket } from './client';
           clients[who] = true;
           // 接收前端的数据
           ws.on('message', async (msg: any) => {
-            let data: any = {};
+            let action: SocketAction = {};
             try {
-              data = JSON.parse(msg);
+              action = JSON.parse(msg);
             } catch (error) {
-              data = {};
+              action = {};
             }
-            if (data.type) {
-              switch (data.type) {
-                case MESSAGE_TYPE.hash:
-                case MESSAGE_TYPE.stillOk:
-                case MESSAGE_TYPE.ok:
-                case MESSAGE_TYPE.errors:
-                case MESSAGE_TYPE.warnings:
-                  // Do nothing webpack-hmr
-                  // 过滤 hmr 消息
-                  break;
-                case 'app-data':
-                  // 发送 localUmiAppData
-                  ws.send(
-                    JSON.stringify({
-                      type: 'app-data',
-                      payload: localUmiAppData.get(),
-                    }),
-                  );
-                  break;
-                case 'call':
-                  console.log('[MongChhi] call me!', data?.payload?.type ?? '');
-                  g_ws.send(
-                    JSON.stringify({
-                      type: data?.payload?.type ?? 'call',
-                      payload: data?.payload,
-                    }),
-                  );
-                  break;
-                default:
-                  await api.applyPlugins({
-                    key: 'onMongChhiSocket',
-                    type: api.ApplyPluginsType.event,
-                    args: { ...g_ws, ...data },
-                  });
-                  break;
-              }
+            const { type, payload } = action;
+            switch (type) {
+              case MESSAGE_TYPE.hash:
+              case MESSAGE_TYPE.stillOk:
+              case MESSAGE_TYPE.ok:
+              case MESSAGE_TYPE.errors:
+              case MESSAGE_TYPE.warnings:
+                // Do nothing webpack-hmr
+                // 过滤 hmr 消息
+                break;
+              case 'call':
+                // 用于和客户端通信，比如从项目的客户端发给 ui 的客户端
+                console.log('[MongChhi] call me!', payload?.type ?? '');
+                g_ws.send(
+                  JSON.stringify({
+                    type: payload?.type ?? 'call',
+                    payload: payload,
+                  }),
+                );
+                break;
+              default:
+                await api.applyPlugins({
+                  key: 'onMongChhiSocket',
+                  type: api.ApplyPluginsType.event,
+                  args: { send: g_ws.send, type, payload },
+                });
+                break;
             }
           });
         }

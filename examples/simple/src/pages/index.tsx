@@ -5,8 +5,15 @@ import yayJpg from '../assets/yay.jpg';
 function HomePage() {
   useEffect(() => {
     // 支持卸载
-    return socket.listen((type) => {
+    return socket.listen(({ type }) => {
       console.log(type);
+      switch (type) {
+        case 'simple-hi':
+          alert('hello');
+          break;
+        default:
+          break;
+      }
     });
   }, []);
   return (
@@ -17,7 +24,7 @@ function HomePage() {
             JSON.stringify({
               type: 'call',
               payload: {
-                type: 'something back!',
+                type: 'simple-hi',
               },
             }),
           );
