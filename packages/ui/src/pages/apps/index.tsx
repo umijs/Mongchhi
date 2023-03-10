@@ -1,9 +1,17 @@
-import type { MenuProps } from 'antd';
-import { Avatar, Dropdown, Input, List, Space, Tree } from 'antd';
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  Input,
+  List,
+  Space,
+  Tooltip,
+  Tree,
+  type MenuProps,
+} from 'antd';
 import type { DataNode } from 'antd/es/tree';
-import React, { useEffect, useState } from 'react';
-import { socket } from 'umi';
-
+import React, { useEffect, useState, type FC } from 'react';
+import { Icon, socket, useIntl } from 'umi';
 const { Search } = Input;
 
 // route数据类型
@@ -117,7 +125,8 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   );
 };
 
-function AppsPage() {
+const AppsPage: FC = () => {
+  const intl = useIntl();
   const [appDatas, setAppDatas] = useState<AppDataType[]>([]); // 初始数据
   const [filterDatas, setFilterDatas] = useState<AppDataType[]>([]); // 经过搜索过滤的数据
 
@@ -148,57 +157,63 @@ function AppsPage() {
       appDatas.filter((item: AppDataType) => item.name.includes(value)),
     );
   };
-  // TODO: 唤起vscode对目标文件夹进行编辑操作
-  /**
-   * 处理编辑按钮点击
-   * @param appData 单项appdata信息
-   */
-  const handleEdit = (appData: AppDataType) => {
-    console.log(appData);
-  };
 
   return (
-    <div>
+    <>
       <Header onSearch={handleSearch} />
       <List
-        itemLayout="horizontal"
+        itemLayout="vertical"
         dataSource={filterDatas}
-        renderItem={(item) => (
-          <div
-            style={{
-              margin: '10px 0',
-              backgroundColor: '#fff',
-            }}
-          >
-            <List.Item
-              actions={[
-                <a
-                  key="list-loadmore-edit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleEdit(item);
-                  }}
+        renderItem={(item, index) => (
+          <List.Item
+            actions={[
+              <Tree key="appdata-tree" treeData={item.treeData ?? []} />,
+            ]}
+            extra={[
+              <Tooltip
+                key="open-in-editor"
+                title={intl.formatMessage({
+                  id: 'open-in-editor-d',
+                })}
+              >
+                <Button
+                  type="primary"
+                  icon={
+                    <Icon
+                      icon="grommet-icons:edit"
+                      style={{ marginRight: '8px' }}
+                      onClick={() => {
+                        socket.send(
+                          JSON.stringify({
+                            type: 'openProjectInEditor',
+                            payload: item,
+                          }),
+                        );
+                      }}
+                    />
+                  }
+                  size="large"
                 >
-                  edit
-                </a>,
-              ]}
-            >
-              <List.Item.Meta
-                style={{ margin: 0 }}
-                avatar={<Avatar size="large"></Avatar>}
-                title={item.name}
-                description={item.cwd}
-              ></List.Item.Meta>
-            </List.Item>
-            <Tree
-              // showLine
-              treeData={item.treeData ?? []}
-            />
-          </div>
+                  {intl.formatMessage({
+                    id: 'open-in-editor',
+                  })}
+                </Button>
+              </Tooltip>,
+            ]}
+          >
+            <List.Item.Meta
+              style={{ margin: 0 }}
+              avatar={
+                <Avatar src={`https://joesch.moe/api/v1/random?key=${index}`} />
+              }
+              title={item.name}
+              description={item.cwd}
+            ></List.Item.Meta>
+          </List.Item>
         )}
       />
-    </div>
+    </>
   );
-}
+};
 
 export default AppsPage;

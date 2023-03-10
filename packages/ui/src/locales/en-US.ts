@@ -7,4 +7,6 @@ export default {
   'button.toggle_langs': 'Change languages',
   'button.color_primary': 'Primary Color',
   'not-found': 'Not found',
+  'open-in-editor-d': 'Open Project In Editor',
+  'open-in-editor': 'Open IDE',
 };
