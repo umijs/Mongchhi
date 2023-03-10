@@ -37,8 +37,6 @@ export { createSocket, socket } from './client';
     ];
   });
   api.onDevCompileDone(() => {
-    // only dev running
-    if (!['dev'].includes(api.name)) return;
     const g_ws: GlobalWebSocketServer =
       (global as any)?.g_mongchhi_ws || (global as any)?.g_umi_ws;
     if (g_ws) {
