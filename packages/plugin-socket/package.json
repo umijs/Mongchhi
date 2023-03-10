@@ -22,9 +22,6 @@
     "@umijs/bundler-webpack": "^4.0.53",
     "@umijs/utils": "^4.0.53"
   },
-  "devDependencies": {
-    "umi": "^4.0.53"
-  },
   "publishConfig": {
     "access": "public"
   },

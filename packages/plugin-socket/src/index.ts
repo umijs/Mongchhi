@@ -1,6 +1,6 @@
+import { IApi } from '@mongchhi/types';
 import { localUmiAppData } from '@mongchhi/utils';
 import { join } from 'path';
-import { IApi } from 'umi';
 import url from 'url';
 import { DIR_NAME, MESSAGE_TYPE, TEMPLATES_DIR } from './constants';
 
