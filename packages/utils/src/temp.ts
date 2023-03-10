@@ -1,6 +1,7 @@
 import { fsExtra as fs } from '@umijs/utils';
 import os from 'os';
 import path from 'path';
+import { IUmiAppData } from './types';
 
 const tempDir = path.join(os.homedir(), '.mongchhi');
 
@@ -16,7 +17,7 @@ class TempFileHelper<InitValue> {
     }
   }
 
-  get(): object | InitValue {
+  get(): InitValue {
     if (fs.existsSync(this.file) === false) {
       return this.initValue;
     }
@@ -38,7 +39,7 @@ class TempFileHelper<InitValue> {
     fs.unlinkSync(this.file);
   }
 
-  private parse(content: string): object | InitValue {
+  private parse(content: string): InitValue {
     try {
       return JSON.parse(content);
     } catch (e) {
@@ -48,7 +49,7 @@ class TempFileHelper<InitValue> {
   }
 }
 
-const localUmiAppData = new TempFileHelper<object>(
+const localUmiAppData = new TempFileHelper<IUmiAppData>(
   'cache',
   'localUmiAppData',
   {},

@@ -1,5 +1,5 @@
 import { IApi } from '@mongchhi/types';
-import { localUmiAppData } from '@mongchhi/utils';
+import { localUmiAppData, type IAppData } from '@mongchhi/utils';
 import { logger } from '@umijs/utils';
 import findPortsInUse from './findPortsInUse';
 
@@ -28,7 +28,7 @@ const getUmiAppByPort = async (port: number | string) => {
     // 给fetch设置超时时间(请求56652端口会严重超时)
     json = await Promise.race([
       timeoutPromise(1000),
-      fetch(url, { signal: signal }).then((rest) => rest.json()),
+      fetch(url, { signal }).then((rest) => rest.json()),
     ]);
   } catch (e) {}
   return json;
@@ -44,14 +44,14 @@ export default (api: IApi) => {
       // 读取 appData 缓存
       // 从缓存页面中读取，或者从页面中打开磁盘目录
       // find live umi app
-      const liveUmiApp: any = localUmiAppData.get();
+      const liveUmiApp = localUmiAppData.get();
       logger.profile('find', 'find live umi app...');
       // 寻找占用中的端口
       const portsInUse = findPortsInUse();
       const res = await Promise.all(
         portsInUse.map((port) => getUmiAppByPort(port)),
       );
-      res.forEach((json) => {
+      res.forEach((json: IAppData) => {
         if (json && json?.cwd) {
           liveUmiApp[json?.cwd] = json;
         }
