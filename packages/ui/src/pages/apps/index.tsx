@@ -94,7 +94,7 @@ const accessAppData = (appData: any): AppDataType[] => {
   });
 };
 
-const Header: React.FC<HeaderProps> = ({ onSearch }) => {
+const Header: React.FC<HeaderProps> = ({ children, onSearch }) => {
   // 下拉菜单的操作内容
   const items = [
     {
@@ -117,6 +117,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
 
   return (
     <Space>
+      {children}
       <Dropdown.Button menu={{ items, onClick: handleMenuClick }}>
         更多操作
       </Dropdown.Button>
@@ -130,12 +131,18 @@ const AppsPage: FC = () => {
   const [appDatas, setAppDatas] = useState<AppDataType[]>([]); // 初始数据
   const [filterDatas, setFilterDatas] = useState<AppDataType[]>([]); // 经过搜索过滤的数据
 
-  useEffect(() => {
+  // 请求最新应用信息 appData
+  const refreshAppData = () => {
     socket.send(
       JSON.stringify({
         type: 'app-data',
       }),
     );
+  };
+
+  useEffect(() => {
+    // 获取 appData
+    refreshAppData();
     // 支持卸载
     return socket.listen(({ type, payload }) => {
       switch (type) {
@@ -160,7 +167,9 @@ const AppsPage: FC = () => {
 
   return (
     <>
-      <Header onSearch={handleSearch} />
+      <Header onSearch={handleSearch}>
+        <Button onClick={refreshAppData}>刷新</Button>
+      </Header>
       <List
         itemLayout="vertical"
         dataSource={filterDatas}
