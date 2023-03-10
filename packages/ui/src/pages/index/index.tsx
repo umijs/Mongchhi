@@ -48,13 +48,11 @@ function HomePage() {
       {Object.keys(appData).map((path) => (
         <div key={path}>{path}</div>
       ))}
-      {Object.keys(appData).length > 0 && (
-        <div>
-          <button type="submit" onClick={refreshAppData}>
-            refresh
-          </button>
-        </div>
-      )}
+      <div>
+        <button type="submit" onClick={refreshAppData}>
+          refresh
+        </button>
+      </div>
     </div>
   );
 }
