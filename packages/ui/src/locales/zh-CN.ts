@@ -7,4 +7,6 @@ export default {
   'button.toggle_langs': '切换语言',
   'button.color_primary': '主题色',
   'not-found': '未找到页面',
+  'open-in-editor-d': '在编辑器中打开项目',
+  'open-in-editor': '编辑器',
 };
