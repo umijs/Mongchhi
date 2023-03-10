@@ -1,4 +1,5 @@
 import { localUmiAppData, type IAppData } from '@mongchhi/utils';
+import { logger } from '@umijs/utils';
 import findPortsInUse from './findPortsInUse';
 
 const getAppDataUrl = (port: number | string) => {
