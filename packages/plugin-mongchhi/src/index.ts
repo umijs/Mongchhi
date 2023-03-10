@@ -1,5 +1,5 @@
 import { IApi } from '@mongchhi/types';
-import { localUmiAppData } from '@mongchhi/utils';
+import { localUmiAppData, type IAppData } from '@mongchhi/utils';
 import getUmiAppData from './getUmiAppData';
 
 export default (api: IApi) => {
@@ -8,7 +8,7 @@ export default (api: IApi) => {
     if (api.service.opts.frameworkName === 'mongchhi') {
       getUmiAppData();
     } else {
-      localUmiAppData.update((appData) => ({
+      localUmiAppData.update((appData: IAppData) => ({
         ...appData,
         ...api.appData,
       }));
