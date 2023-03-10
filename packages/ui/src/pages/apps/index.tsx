@@ -167,7 +167,7 @@ function AppsPage() {
           <div
             style={{
               margin: '10px 0',
-              backgroundColor: '#fff'
+              backgroundColor: '#fff',
             }}
           >
             <List.Item
