@@ -11,3 +11,5 @@ fixtures
 *.yaml
 *.less
 .turbo
+/playwright-report/
+/playwright/.cache/
