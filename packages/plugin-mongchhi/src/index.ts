@@ -17,8 +17,6 @@ export default (api: IApi) => {
         ...appData,
         [api.appData.cwd]: api.appData,
       }));
-      // todo 告诉主程序，有应用启动了
-      // todo 主程序 ui 收到消息，刷新 app-data
     }
   });
   api.onMongChhiSocket(async ({ type, send, payload }) => {
