@@ -18,6 +18,7 @@
   "dependencies": {
     "@mongchhi/types": "^0.0.1-alpha.1",
     "@mongchhi/utils": "^0.0.1-alpha.1",
+    "@umijs/launch-editor": "^1.0.1",
     "@umijs/utils": "^4.0.53",
     "node-fetch": "^3.3.0"
   },
