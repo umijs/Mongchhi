@@ -5,7 +5,7 @@ import getUmiAppData from './getUmiAppData';
 export default (api: IApi) => {
   api.onStart(() => {
     if (api.appData.umi.name === 'mongchhi') {
-      // mongchhi 主程序，回去全部 appData
+      // mongchhi 主程序，获取全部 appData
       getUmiAppData();
     }
   });
@@ -16,6 +16,8 @@ export default (api: IApi) => {
         ...appData,
         [api.appData.cwd]: api.appData,
       }));
+      // todo 告诉主程序，有应用启动了
+      // todo 主程序 ui 收到消息，刷新 app-data
     }
   });
   api.onMongChhiSocket(async ({ type, send }) => {

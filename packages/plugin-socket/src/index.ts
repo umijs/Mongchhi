@@ -36,7 +36,9 @@ export { createSocket, socket } from './client';
       `import { createSocket } from '@@/${DIR_NAME}/client';createSocket()`,
     ];
   });
-  // MongChhi 主程序没有 onDevCompileDone 事件，通过 onMongChhiSocketReady 实现
+  // socket 就绪事件：
+  // 1. g_mongchhi_ws：没有 onDevCompileDone 事件，手动触发
+  // 2. g_umi_ws：onDevCompileDone 时触发
   api.register({
     key: 'onMongChhiSocketReady',
     fn: () => {
