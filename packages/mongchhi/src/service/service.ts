@@ -22,7 +22,10 @@ export class Service extends CoreService {
         require.resolve('../presets/umiPreset'),
         require.resolve('@mongchhi/preset-mongchhi'),
       ],
-      plugins: [require.resolve('../commands/show')],
+      plugins: [
+        require.resolve('../plugins/mcAppData'),
+        require.resolve('../commands/show'),
+      ],
     });
   }
 

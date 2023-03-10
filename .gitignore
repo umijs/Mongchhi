@@ -5,3 +5,5 @@ lib
 .umi
 .umi-production
 .umi-test
+/playwright-report/
+/playwright/.cache/
