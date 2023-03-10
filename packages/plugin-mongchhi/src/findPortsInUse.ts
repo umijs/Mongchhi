@@ -27,10 +27,15 @@ function findPortsInUse(): number[] {
     proc.output.forEach((output) => {
       if (output) {
         output.split('\n').forEach((line) => {
+          // status LISTEN only
           if (line.indexOf('LISTEN') > -1) {
+            // get local port only
+            // win32: *:8000
+            // darwin/linux: *.8000
             const matcher = /[:.](\d+)\s/.exec(line);
             if (matcher?.[1]) {
               const port = Number(matcher[1]);
+              // get ports in range
               if (port >= 1025 && port <= 65535) {
                 ports.add(port);
               }
