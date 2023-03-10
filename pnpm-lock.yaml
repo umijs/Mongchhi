@@ -128,14 +128,11 @@ importers:
       '@mongchhi/utils': ^0.0.1-alpha.1
       '@umijs/bundler-webpack': ^4.0.53
       '@umijs/utils': ^4.0.53
-      umi: ^4.0.53
     dependencies:
       '@mongchhi/types': link:../types
       '@mongchhi/utils': link:../utils
       '@umijs/bundler-webpack': registry.npmjs.org/@umijs/bundler-webpack/4.0.53
       '@umijs/utils': registry.npmjs.org/@umijs/utils/4.0.53
-    devDependencies:
-      umi: registry.npmjs.org/umi/4.0.53
 
   packages/preset-mongchhi:
     specifiers:
@@ -147,9 +144,9 @@ importers:
 
   packages/types:
     specifiers:
-      '@umijs/core': ^4.0.53
+      '@umijs/preset-umi': ^4.0.53
     dependencies:
-      '@umijs/core': registry.npmjs.org/@umijs/core/4.0.53
+      '@umijs/preset-umi': registry.npmjs.org/@umijs/preset-umi/4.0.56
 
   packages/ui:
     specifiers:

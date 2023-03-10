@@ -1,3 +1,3 @@
-import type { IServicePluginAPI, PluginAPI } from '@umijs/core';
+import type { IApi as IUmiApi } from '@umijs/preset-umi';
 
-export type IApi = PluginAPI & IServicePluginAPI;
+export type IApi = IUmiApi;

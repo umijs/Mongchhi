@@ -14,7 +14,7 @@
     "build": "father build"
   },
   "dependencies": {
-    "@umijs/core": "^4.0.53"
+    "@umijs/preset-umi": "^4.0.53"
   },
   "publishConfig": {
     "access": "public"
