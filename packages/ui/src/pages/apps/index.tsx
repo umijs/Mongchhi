@@ -3,7 +3,6 @@ import { Avatar, Dropdown, Input, List, Space, Tree } from 'antd';
 import type { DataNode } from 'antd/es/tree';
 import React, { useEffect, useState } from 'react';
 import { socket } from 'umi';
-import styles from './index.less';
 
 const { Search } = Input;
 
@@ -165,7 +164,12 @@ function AppsPage() {
         itemLayout="horizontal"
         dataSource={filterDatas}
         renderItem={(item) => (
-          <div className={styles.appDataItem}>
+          <div
+            style={{
+              margin: '10px 0',
+              backgroundColor: '#fff'
+            }}
+          >
             <List.Item
               actions={[
                 <a
@@ -178,11 +182,9 @@ function AppsPage() {
                   edit
                 </a>,
               ]}
-              style={{
-                margin: 0,
-              }}
             >
               <List.Item.Meta
+                style={{ margin: 0 }}
                 avatar={<Avatar size="large"></Avatar>}
                 title={item.name}
                 description={item.cwd}
