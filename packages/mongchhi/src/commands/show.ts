@@ -71,10 +71,6 @@ export default (api: IApi) => {
       ws = createWebSocketServer(server);
       // 将 socket 连接共享给插件
       (global as any).g_mongchhi_ws = ws;
-      // 手动触发 socket 就绪事件
-      api.applyPlugins({
-        key: 'onMongChhiSocketReady',
-      });
 
       const port = await portfinder.getPortPromise({
         port: parseInt(String(api.args.port || 3000), 10),
