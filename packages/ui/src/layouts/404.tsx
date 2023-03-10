@@ -1,4 +1,5 @@
 import { Button } from 'antd';
+import React from 'react';
 import { useIntl, useOutlet } from 'umi';
 
 const NotFoundLayout = () => {

@@ -118,11 +118,13 @@ importers:
     specifiers:
       '@mongchhi/types': ^0.0.1-alpha.1
       '@mongchhi/utils': ^0.0.1-alpha.1
+      '@umijs/launch-editor': ^1.0.1
       '@umijs/utils': ^4.0.53
       node-fetch: ^3.3.0
     dependencies:
       '@mongchhi/types': link:../types
       '@mongchhi/utils': link:../utils
+      '@umijs/launch-editor': registry.npmjs.org/@umijs/launch-editor/1.0.1
       '@umijs/utils': registry.npmjs.org/@umijs/utils/4.0.53
       node-fetch: registry.npmjs.org/node-fetch/3.3.0
 
@@ -1408,15 +1410,6 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /cross-spawn/7.0.3:
-    resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
-    engines: {node: '>= 8'}
-    dependencies:
-      path-key: registry.npmjs.org/path-key/3.1.1
-      shebang-command: 2.0.0
-      which: 2.0.2
-    dev: true
-
   /dargs/7.0.0:
     resolution: {integrity: sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==}
     engines: {node: '>=8'}
@@ -1606,7 +1599,7 @@ packages:
     resolution: {integrity: sha512-ov6w/2LCiuyO4RLYGdpFGjkcs0wMTgGE8PrkTHikeUy5iJekXyPIKUjifk5CsE0pt7sMCrMZ3YNqoCj6idQOnQ==}
     engines: {node: '>=10'}
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: registry.npmjs.org/cross-spawn/7.0.3
       get-stream: 6.0.0
       human-signals: 2.1.0
       is-stream: 2.0.0
@@ -3684,18 +3677,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       kind-of: 6.0.3
-    dev: true
-
-  /shebang-command/2.0.0:
-    resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
-    engines: {node: '>=8'}
-    dependencies:
-      shebang-regex: 3.0.0
-    dev: true
-
-  /shebang-regex/3.0.0:
-    resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
-    engines: {node: '>=8'}
     dev: true
 
   /signal-exit/3.0.7:
@@ -9090,7 +9071,7 @@ packages:
       is-glob: registry.npmjs.org/is-glob/4.0.3
       semver: registry.npmjs.org/semver/7.3.8
       tsutils: registry.npmjs.org/tsutils/3.21.0_typescript@4.9.5
-      typescript: registry.npmjs.org/typescript/4.9.5
+      typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
 
@@ -9652,6 +9633,18 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmjs.org/@babel/runtime/7.21.0
       query-string: registry.npmjs.org/query-string/6.14.1
+
+  registry.npmjs.org/@umijs/launch-editor/1.0.1:
+    resolution: {integrity: sha512-slyYS1BH3Rwic49J641dXSYeDwtkD/A1Cfp4SbQlz1v8GfLeZ1hC952O6hvK98ZTxqk4BogYFObyZcI/RqQVEw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@umijs/launch-editor/-/launch-editor-1.0.1.tgz}
+    name: '@umijs/launch-editor'
+    version: 1.0.1
+    dependencies:
+      cross-spawn: registry.npmjs.org/cross-spawn/7.0.3
+      debug: registry.npmjs.org/debug/4.3.4
+      user-home: registry.npmjs.org/user-home/2.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   registry.npmjs.org/@umijs/lint/4.0.53:
     resolution: {integrity: sha512-WZ1Gn1TxCidKYATik7C4qUXo4QRv+hPBBifMhQrtK64VuGjQofgQI8hiXTmc+vE//Fjh3qmJbZYivsrlq5z/Zg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@umijs/lint/-/lint-4.0.53.tgz}
@@ -16473,6 +16466,13 @@ packages:
     name: os-browserify
     version: 0.3.0
 
+  registry.npmjs.org/os-homedir/1.0.2:
+    resolution: {integrity: sha512-B5JU3cabzk8c67mRRd3ECmROafjYMXbuzlwtqdM8IbS8ktlTix8aFGb2bAGKrSRIlnfKwovGUUr72JUPyOb6kQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/os-homedir/-/os-homedir-1.0.2.tgz}
+    name: os-homedir
+    version: 1.0.2
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   registry.npmjs.org/p-limit/2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/p-limit/-/p-limit-2.3.0.tgz}
     name: p-limit
@@ -20267,7 +20267,7 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: registry.npmjs.org/tslib/1.14.1
-      typescript: registry.npmjs.org/typescript/4.9.5
+      typescript: 4.9.5
 
   registry.npmjs.org/tsx/3.12.3:
     resolution: {integrity: sha512-Wc5BFH1xccYTXaQob+lEcimkcb/Pq+0en2s+ruiX0VEIC80nV7/0s7XRahx8NnsoCnpCVUPz8wrqVSPi760LkA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/tsx/-/tsx-3.12.3.tgz}
@@ -20754,6 +20754,15 @@ packages:
     version: 1.2.0
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dev: false
+
+  registry.npmjs.org/user-home/2.0.0:
+    resolution: {integrity: sha512-KMWqdlOcjCYdtIJpicDSFBQ8nFwS2i9sslAd6f4+CBGcU4gist2REnr2fxj2YocvJFxSF3ZOHLYLVZnUxv4BZQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/user-home/-/user-home-2.0.0.tgz}
+    name: user-home
+    version: 2.0.0
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      os-homedir: registry.npmjs.org/os-homedir/1.0.2
     dev: false
 
   registry.npmjs.org/util-deprecate/1.0.2:

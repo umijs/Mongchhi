@@ -1,5 +1,6 @@
 import { IApi } from '@mongchhi/types';
 import { localUmiAppData, type IAppData } from '@mongchhi/utils';
+import launchEditor from '@umijs/launch-editor';
 import getUmiAppData from './getUmiAppData';
 
 export default (api: IApi) => {
@@ -20,7 +21,7 @@ export default (api: IApi) => {
       // todo 主程序 ui 收到消息，刷新 app-data
     }
   });
-  api.onMongChhiSocket(async ({ type, send }) => {
+  api.onMongChhiSocket(async ({ type, send, payload }) => {
     switch (type) {
       case 'app-data':
         // 发送 localUmiAppData
@@ -30,6 +31,13 @@ export default (api: IApi) => {
             payload: localUmiAppData.get(),
           }),
         );
+        break;
+      case 'openProjectInEditor':
+        try {
+          await launchEditor(payload.cwd);
+        } catch (e) {
+          console.error(e);
+        }
         break;
     }
   });

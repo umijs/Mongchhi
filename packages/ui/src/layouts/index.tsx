@@ -2,28 +2,37 @@ import { TheFooter } from '@/components/TheFooter';
 import { useDark } from '@/hooks/useDark';
 import { App, ConfigProvider, Layout, theme } from 'antd';
 import React, { useState } from 'react';
-import { useLocation } from 'umi';
+import { Outlet, useLocation } from 'umi';
 import { NotFoundLayout } from './404';
-import { DefaultLayout } from './default';
-import { HomeLayout } from './home';
 
-const { darkAlgorithm, defaultAlgorithm } = theme;
+const { darkAlgorithm, defaultAlgorithm, useToken } = theme;
 
-export default () => {
+const Content = () => {
   const { pathname } = useLocation();
+  const {
+    token: { colorBgContainer },
+  } = useToken();
+  let layout = <Outlet />;
+  if (pathname === '/404') {
+    layout = <NotFoundLayout />;
+  }
+
+  return (
+    <Layout.Content
+      style={{
+        margin: '24px 16px',
+        padding: 24,
+        minHeight: 280,
+        background: colorBgContainer,
+      }}
+    >
+      {layout}
+    </Layout.Content>
+  );
+};
+const BaseLayout = () => {
   const [darkTheme, changeTheme] = useDark();
   const [colorPrimary, setColorPrimary] = useState<any>();
-  let layout = <DefaultLayout />;
-  switch (pathname) {
-    case '/':
-      layout = <HomeLayout />;
-      break;
-    case '/404':
-      layout = <NotFoundLayout />;
-      break;
-    default:
-      break;
-  }
   return (
     <ConfigProvider
       theme={{
@@ -33,6 +42,7 @@ export default () => {
       }}
     >
       <App>
+        {Math.random()}
         <Layout
           hasSider={false}
           style={{
@@ -41,7 +51,8 @@ export default () => {
             padding: 0,
           }}
         >
-          {layout}
+          <Content />
+          {Math.random()}
           <Layout.Footer style={{ textAlign: 'center' }}>
             <TheFooter
               changeTheme={changeTheme}
@@ -55,3 +66,5 @@ export default () => {
     </ConfigProvider>
   );
 };
+
+export default BaseLayout;
