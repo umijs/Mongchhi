@@ -45,10 +45,10 @@ const getUmiAppData = async () => {
     portsInUse.map((port) => getUmiAppByPort(port)),
   );
   res.forEach((json: IAppData) => {
-  if (json && json?.cwd) {
-   liveUmiApp[json?.cwd] = json;
-  }
-});
+    if (json && json?.cwd) {
+      liveUmiApp[json?.cwd] = json;
+    }
+  });
   // 写入 appData 缓存
   localUmiAppData.set(liveUmiApp);
 };
