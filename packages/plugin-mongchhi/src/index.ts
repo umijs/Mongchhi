@@ -10,7 +10,7 @@ export default (api: IApi) => {
     } else {
       localUmiAppData.update((appData: IAppData) => ({
         ...appData,
-        ...api.appData,
+        [api.appData.cwd]: api.appData,
       }));
     }
   });
