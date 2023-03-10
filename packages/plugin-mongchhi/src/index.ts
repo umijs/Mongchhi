@@ -5,7 +5,7 @@ import getUmiAppData from './getUmiAppData';
 export default (api: IApi) => {
   api.onStart(() => {
     // @ts-ignore
-    if (api.servoce.opts.frameworkName === 'mongchhi') {
+    if (api.service.opts.frameworkName === 'mongchhi') {
       getUmiAppData();
     } else {
       localUmiAppData.update((appData) => ({
