@@ -56,9 +56,11 @@ importers:
       '@mongchhi/preset-mongchhi': workspace:*
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
+      antd: ^5.3.0
       typescript: ^4.1.2
       umi: ^4.0.53
     dependencies:
+      antd: registry.npmjs.org/antd/5.3.0
       umi: registry.npmjs.org/umi/4.0.53_c6mc5dj2lvpczaqlkcypbolpey
     devDependencies:
       '@mongchhi/plugin-inject-ui': link:../../packages/plugin-inject-ui
@@ -98,6 +100,14 @@ importers:
       '@umijs/preset-umi': registry.npmjs.org/@umijs/preset-umi/4.0.56
       '@umijs/utils': 4.0.53
       sirv: registry.npmjs.org/sirv/2.0.2
+
+  packages/plugin-antd-theme:
+    specifiers:
+      '@mongchhi/types': ^0.0.1-alpha.1
+      '@mongchhi/utils': ^0.0.1-alpha.1
+    dependencies:
+      '@mongchhi/types': link:../types
+      '@mongchhi/utils': link:../utils
 
   packages/plugin-inject-ui:
     specifiers:
@@ -150,10 +160,12 @@ importers:
 
   packages/preset-mongchhi:
     specifiers:
+      '@mongchhi/plugin-antd-theme': ^0.0.1-alpha.1
       '@mongchhi/plugin-mongchhi': ^0.0.1-alpha.1
       '@mongchhi/plugin-sdk': ^0.0.1-alpha.1
       '@mongchhi/plugin-socket': ^0.0.1-alpha.1
     dependencies:
+      '@mongchhi/plugin-antd-theme': link:../plugin-antd-theme
       '@mongchhi/plugin-mongchhi': link:../plugin-mongchhi
       '@mongchhi/plugin-sdk': link:../plugin-sdk
       '@mongchhi/plugin-socket': link:../plugin-socket
@@ -9114,7 +9126,7 @@ packages:
       is-glob: registry.npmjs.org/is-glob/4.0.3
       semver: registry.npmjs.org/semver/7.3.8
       tsutils: registry.npmjs.org/tsutils/3.21.0_typescript@4.9.5
-      typescript: 4.9.5
+      typescript: registry.npmjs.org/typescript/4.9.5
     transitivePeerDependencies:
       - supports-color
 
@@ -10482,7 +10494,7 @@ packages:
       '@ant-design/cssinjs': registry.npmjs.org/@ant-design/cssinjs/1.6.1
       '@ant-design/icons': registry.npmjs.org/@ant-design/icons/5.0.1
       '@ant-design/react-slick': registry.npmjs.org/@ant-design/react-slick/1.0.0
-      '@babel/runtime': registry.npmjs.org/@babel/runtime/7.20.7
+      '@babel/runtime': registry.npmjs.org/@babel/runtime/7.21.0
       '@ctrl/tinycolor': registry.npmjs.org/@ctrl/tinycolor/3.6.0
       '@rc-component/mutate-observer': registry.npmjs.org/@rc-component/mutate-observer/1.0.0
       '@rc-component/tour': registry.npmjs.org/@rc-component/tour/1.8.0
@@ -20398,7 +20410,7 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: registry.npmjs.org/tslib/1.14.1
-      typescript: 4.9.5
+      typescript: registry.npmjs.org/typescript/4.9.5
 
   registry.npmjs.org/tsx/3.12.3:
     resolution: {integrity: sha512-Wc5BFH1xccYTXaQob+lEcimkcb/Pq+0en2s+ruiX0VEIC80nV7/0s7XRahx8NnsoCnpCVUPz8wrqVSPi760LkA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/tsx/-/tsx-3.12.3.tgz}

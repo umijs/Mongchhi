@@ -1,5 +1,5 @@
 {
-  "name": "@mongchhi/preset-mongchhi",
+  "name": "@mongchhi/plugin-antd-theme",
   "version": "0.0.1-alpha.1",
   "description": "",
   "keywords": [],
@@ -12,13 +12,12 @@
   ],
   "scripts": {
     "build": "father build",
-    "dev": "father dev"
+    "dev": "father dev",
+    "watch": "father dev"
   },
   "dependencies": {
-    "@mongchhi/plugin-antd-theme": "^0.0.1-alpha.1",
-    "@mongchhi/plugin-mongchhi": "^0.0.1-alpha.1",
-    "@mongchhi/plugin-sdk": "^0.0.1-alpha.1",
-    "@mongchhi/plugin-socket": "^0.0.1-alpha.1"
+    "@mongchhi/types": "^0.0.1-alpha.1",
+    "@mongchhi/utils": "^0.0.1-alpha.1"
   },
   "publishConfig": {
     "access": "public"
