@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import { useEffect } from 'react';
 import { socket } from 'umi';
 import yayJpg from '../assets/yay.jpg';
@@ -18,24 +19,27 @@ function HomePage() {
   }, []);
   return (
     <div>
-      <h2
-        onClick={() => {
-          socket.send(
-            JSON.stringify({
-              type: 'call',
-              payload: {
-                type: 'simple-hi',
-              },
-            }),
-          );
-        }}
-      >
-        Yay! Welcome to umi!
-      </h2>
+      <h2>Yay! Welcome to umi!</h2>
       <p>
         <p>Card content</p>
       </p>
-
+      <p>
+        <Button
+          type="primary"
+          onClick={() => {
+            socket.send(
+              JSON.stringify({
+                type: 'call',
+                payload: {
+                  type: 'simple-hi',
+                },
+              }),
+            );
+          }}
+        >
+          call
+        </Button>
+      </p>
       <p>
         <img src={yayJpg} width="388" />
       </p>

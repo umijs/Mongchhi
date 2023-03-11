@@ -11,7 +11,7 @@ import {
 } from 'antd';
 import type { DataNode } from 'antd/es/tree';
 import React, { useEffect, useState, type FC } from 'react';
-import { Icon, socket, useIntl } from 'umi';
+import { history, Icon, socket, useIntl } from 'umi';
 const { Search } = Input;
 
 // route数据类型
@@ -33,6 +33,7 @@ type AppDataType = {
 };
 type HeaderProps = {
   onSearch: (value: string) => void;
+  children?: any;
 };
 
 // TODO: 暂无icon
@@ -179,35 +180,45 @@ const AppsPage: FC = () => {
               <Tree key="appdata-tree" treeData={item.treeData ?? []} />,
             ]}
             extra={[
-              <Tooltip
-                key="open-in-editor"
-                title={intl.formatMessage({
-                  id: 'open-in-editor-d',
-                })}
-              >
+              <Space key="action">
+                {/* todo 检测是否装有 antd5 再显示按钮 */}
                 <Button
-                  type="primary"
-                  icon={
-                    <Icon
-                      icon="grommet-icons:edit"
-                      style={{ marginRight: '8px' }}
-                      onClick={() => {
-                        socket.send(
-                          JSON.stringify({
-                            type: 'openProjectInEditor',
-                            payload: item,
-                          }),
-                        );
-                      }}
-                    />
-                  }
-                  size="large"
+                  onClick={() => {
+                    history.push('/antd-theme', { appData: item });
+                  }}
                 >
-                  {intl.formatMessage({
-                    id: 'open-in-editor',
-                  })}
+                  编辑 Ant Design 主题
                 </Button>
-              </Tooltip>,
+                <Tooltip
+                  key="open-in-editor"
+                  title={intl.formatMessage({
+                    id: 'open-in-editor-d',
+                  })}
+                >
+                  <Button
+                    type="primary"
+                    icon={
+                      <Icon
+                        icon="grommet-icons:edit"
+                        style={{ marginRight: '8px' }}
+                        onClick={() => {
+                          socket.send(
+                            JSON.stringify({
+                              type: 'openProjectInEditor',
+                              payload: item,
+                            }),
+                          );
+                        }}
+                      />
+                    }
+                    size="large"
+                  >
+                    {intl.formatMessage({
+                      id: 'open-in-editor',
+                    })}
+                  </Button>
+                </Tooltip>
+              </Space>,
             ]}
           >
             <List.Item.Meta

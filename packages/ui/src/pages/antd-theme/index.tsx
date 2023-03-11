@@ -2,6 +2,7 @@ import { Button, ConfigProvider, message, Typography } from 'antd';
 import { enUS, ThemeEditor, zhCN } from 'antd-token-previewer';
 import type { ThemeConfig } from 'antd/es/config-provider/context';
 import React, { useLayoutEffect } from 'react';
+import { socket, useLocation } from 'umi';
 
 const locales = {
   cn: {
@@ -35,17 +36,53 @@ const CustomTheme = () => {
   const lang = 'cn';
   const locale = locales[lang];
 
-  const [theme, setTheme] = React.useState<ThemeConfig>({});
+  const [theme, setTheme] = React.useState<ThemeConfig>({ token: {} });
+  const location = useLocation();
+  const cwd = (location.state as any)?.appData?.cwd;
+
+  const getAntdTheme = () => {
+    socket.send(
+      JSON.stringify({
+        type: 'get-antd-theme',
+        payload: {
+          cwd,
+        },
+      }),
+    );
+  };
+
+  const saveAntdTheme = () => {
+    socket.send(
+      JSON.stringify({
+        type: 'save-antd-theme',
+        payload: {
+          cwd,
+          token: theme.token,
+        },
+      }),
+    );
+  };
 
   useLayoutEffect(() => {
-    // todo 读取项目 theme 文件
-    // setTheme(() => JSON.parse(storedConfig));
+    // 读取项目 theme 文件
+    getAntdTheme();
+    // 监听事件，支持卸载
+    return socket.listen(({ type, payload }) => {
+      switch (type) {
+        case 'get-antd-theme':
+          setTheme({ token: payload.token });
+          break;
+        case 'save-antd-theme-success':
+          messageApi.success(locale.saveSuccessfully);
+          break;
+        default:
+      }
+    });
   }, []);
 
   const handleSave = () => {
-    // todo 保存 theme 到项目文件
-    console.log('theme', theme);
-    messageApi.success(locale.saveSuccessfully);
+    // 保存 theme 到项目文件
+    saveAntdTheme();
   };
 
   const handleExport = () => {

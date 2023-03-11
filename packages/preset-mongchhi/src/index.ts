@@ -3,6 +3,7 @@ export default function () {
     require.resolve('@mongchhi/plugin-sdk'),
     require.resolve('@mongchhi/plugin-mongchhi'),
     require.resolve('@mongchhi/plugin-socket'),
+    require.resolve('@mongchhi/plugin-antd-theme'),
   ];
   return {
     plugins,
