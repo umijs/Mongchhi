@@ -37,8 +37,8 @@ export { createSocket, socket } from './client';
     ];
   });
   api.onDevCompileDone(() => {
-    // only dev running
-    if (!['dev'].includes(api.name)) return;
+    // mongchhi 主程序时，g_ws 为 g_mongchhi_ws
+    // dev 时，g_ws 为 g_umi_ws
     const g_ws: GlobalWebSocketServer =
       (global as any)?.g_mongchhi_ws || (global as any)?.g_umi_ws;
     if (g_ws) {

@@ -76,6 +76,8 @@ export default (api: IApi) => {
         key: 'onDevCompileDone',
         args: {},
       });
+
+      // 找一个可用端口（默认3000）
       const port = await portfinder.getPortPromise({
         port: parseInt(String(api.args.port || 3000), 10),
       });

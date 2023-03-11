@@ -6,7 +6,7 @@ import getUmiAppData from './getUmiAppData';
 export default (api: IApi) => {
   api.onStart(() => {
     if (api.appData.umi.name === 'mongchhi') {
-      // mongchhi 主程序，回去全部 appData
+      // mongchhi 主程序，获取全部 appData
       getUmiAppData();
     }
   });
