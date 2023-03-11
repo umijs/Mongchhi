@@ -1,3 +1,3 @@
-import { localUmiAppData, corePort } from './temp';
+import { localUmiAppData } from './temp';
 export * from './types';
-export { localUmiAppData, corePort };
+export { localUmiAppData };

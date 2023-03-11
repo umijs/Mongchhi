@@ -55,6 +55,4 @@ const localUmiAppData = new TempFileHelper<IUmiAppData>(
   {},
 );
 
-const corePort = new TempFileHelper<undefined>('core', 'corePort');
-
-export { localUmiAppData, corePort };
+export { localUmiAppData };
