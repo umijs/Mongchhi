@@ -13,7 +13,7 @@ interface Commands {
 const commands: Commands = {
   linux: { cmd: 'netstat', args: ['-a', '-n'] },
   darwin: { cmd: 'netstat', args: ['-a', '-n'] },
-  win3: { cmd: 'netstat', args: ['-a', '-n'] },
+  win32: { cmd: 'netstat', args: ['-a', '-n'] },
 };
 
 function findPortsInUse(): number[] {
