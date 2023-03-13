@@ -23,28 +23,22 @@ export default (api: IApi) => {
     fs.writeFileSync(themeFile, JSON.stringify(token), 'utf-8');
   };
 
-  api.onMongChhiSocket(async ({ type, send, payload }) => {
+  api.onMongChhiSocket(async ({ type, send, payload, success }) => {
     switch (type) {
       // 获取主题 token
       case 'get-antd-theme':
-        send(
-          JSON.stringify({
-            type: 'get-antd-theme',
-            payload: {
-              token: getAntdThemeFromFile(payload?.cwd),
-            },
-          }),
-        );
+        send({
+          type: 'get-antd-theme',
+          payload: {
+            token: getAntdThemeFromFile(payload?.cwd),
+          },
+        });
         break;
       // 写入主题 token
       case 'save-antd-theme':
         // 告诉客户端写入成功
         saveAntdThemeToFile(payload?.cwd, payload?.token ?? {});
-        send(
-          JSON.stringify({
-            type: 'save-antd-theme-success',
-          }),
-        );
+        success();
       default:
     }
   });

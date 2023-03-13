@@ -134,11 +134,9 @@ const AppsPage: FC = () => {
 
   // 请求最新应用信息 appData
   const refreshAppData = () => {
-    socket.send(
-      JSON.stringify({
-        type: 'app-data',
-      }),
-    );
+    socket.send({
+      type: 'app-data',
+    });
   };
 
   useEffect(() => {
@@ -202,12 +200,10 @@ const AppsPage: FC = () => {
                         icon="grommet-icons:edit"
                         style={{ marginRight: '8px' }}
                         onClick={() => {
-                          socket.send(
-                            JSON.stringify({
-                              type: 'openProjectInEditor',
-                              payload: item,
-                            }),
-                          );
+                          socket.send({
+                            type: 'openProjectInEditor',
+                            payload: item,
+                          });
                         }}
                       />
                     }

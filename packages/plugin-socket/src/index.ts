@@ -53,6 +53,15 @@ export { createSocket, socket } from './client';
         const urlParts = url.parse(req.url, true);
         const query = urlParts.query;
         const who = query.who as string;
+        function success(type: string, payload: any) {
+          send({ type: `${type}/success`, payload });
+        }
+        function failure(type: string, payload: any) {
+          send({ type: `${type}/failure`, payload });
+        }
+        function progress(type: string, payload: any) {
+          send({ type: `${type}/progress`, payload });
+        }
         if (who && !clients[who]) {
           clients[who] = true;
           // 接收前端的数据
@@ -65,6 +74,14 @@ export { createSocket, socket } from './client';
             }
             const { type = '', payload = {} } = action;
 
+            const serviceArgs = {
+              type,
+              payload,
+              send,
+              success: success.bind(this, type),
+              failure: failure.bind(this, type),
+              progress: progress.bind(this, type),
+            };
             switch (type) {
               case MESSAGE_TYPE.hash:
               case MESSAGE_TYPE.stillOk:
@@ -86,11 +103,7 @@ export { createSocket, socket } from './client';
                 await api.applyPlugins({
                   key: 'onMongChhiSocket',
                   type: api.ApplyPluginsType.event,
-                  args: {
-                    type,
-                    payload,
-                    send,
-                  },
+                  args: serviceArgs,
                 });
                 break;
             }
