@@ -27,14 +27,12 @@ function HomePage() {
         <Button
           type="primary"
           onClick={() => {
-            socket.send(
-              JSON.stringify({
-                type: 'call',
-                payload: {
-                  type: 'simple-hi',
-                },
-              }),
-            );
+            socket.send({
+              type: 'call',
+              payload: {
+                type: 'simple-hi',
+              },
+            });
           }}
         >
           call
