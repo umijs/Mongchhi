@@ -41,26 +41,22 @@ const CustomTheme = () => {
   const cwd = (location.state as any)?.appData?.cwd;
 
   const getAntdTheme = () => {
-    socket.send(
-      JSON.stringify({
-        type: 'get-antd-theme',
-        payload: {
-          cwd,
-        },
-      }),
-    );
+    socket.send({
+      type: 'get-antd-theme',
+      payload: {
+        cwd,
+      },
+    });
   };
 
   const saveAntdTheme = () => {
-    socket.send(
-      JSON.stringify({
-        type: 'save-antd-theme',
-        payload: {
-          cwd,
-          token: theme.token,
-        },
-      }),
-    );
+    socket.send({
+      type: 'save-antd-theme',
+      payload: {
+        cwd,
+        token: theme.token,
+      },
+    });
   };
 
   useLayoutEffect(() => {
@@ -72,7 +68,7 @@ const CustomTheme = () => {
         case 'get-antd-theme':
           setTheme({ token: payload.token });
           break;
-        case 'save-antd-theme-success':
+        case 'save-antd-theme/success':
           messageApi.success(locale.saveSuccessfully);
           break;
         default:

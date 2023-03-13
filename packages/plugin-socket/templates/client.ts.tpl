@@ -1,5 +1,6 @@
 interface MongChhiScoket extends WebSocket {
   listen: (callback: Subscription<SocketAction>) => any;
+  send: (action: any) => void;
 }
 let socket: MongChhiScoket;
 
@@ -45,21 +46,28 @@ export function createSocket() {
   if (socket && socket.readyState === WebSocket.OPEN) {
     return socket;
   }
-  socket = new WebSocket(getSocketHost(), 'webpack-hmr') as MongChhiScoket;
+  const _socket = new WebSocket(getSocketHost(), 'webpack-hmr') as MongChhiScoket;
+  function send(action: any) {
+    let message = action;
+    if (typeof action !== 'string') {
+      message = JSON.stringify(action);
+    }
+    _socket.send(message);
+  }
   let pingTimer: NodeJS.Timer;
 
-  socket.listen = (callback: Subscription<SocketAction>) => {
+  _socket.listen = (callback: Subscription<SocketAction>) => {
     return socketEmitter.useSubscription(callback);
   };
 
-  socket.onmessage = async (message) => {
+  _socket.onmessage = async (message) => {
     let { data } = message;
     data = JSON.parse(data);
     switch (data.type) {
       case 'connected':
         console.log(`[MongChhi] connected.`);
         // 心跳包
-        pingTimer = setInterval(() => socket.send('ping'), 30000);
+        pingTimer = setInterval(() => send('ping'), 30000);
         break;
       case 'reload':
         window.location.reload();
@@ -69,18 +77,19 @@ export function createSocket() {
         break;
       default:
         socketEmitter.emit({
-          send: socket.send,
+          send,
           ...data,
         });
         break;
     }
   };
-  socket.onclose = async () => {
+  _socket.onclose = async () => {
     if (pingTimer) clearInterval(pingTimer);
     console.info('[MongChhi] Dev server disconnected. Polling for restart...');
     // webpack-hmr 会尝试重连，这里可以忽略
   };
 
+  socket = { ..._socket, send }
   return socket;
 }
 

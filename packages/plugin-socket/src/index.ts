@@ -42,10 +42,26 @@ export { createSocket, socket } from './client';
     const g_ws: GlobalWebSocketServer =
       (global as any)?.g_mongchhi_ws || (global as any)?.g_umi_ws;
     if (g_ws) {
+      function send(action: any) {
+        let message = action;
+        if (typeof action !== 'string') {
+          message = JSON.stringify(action);
+        }
+        g_ws.send(message);
+      }
       g_ws.wss.on('connection', async (ws, req: any) => {
         const urlParts = url.parse(req.url, true);
         const query = urlParts.query;
         const who = query.who as string;
+        function success(type: string, payload: any) {
+          send({ type: `${type}/success`, payload });
+        }
+        function failure(type: string, payload: any) {
+          send({ type: `${type}/failure`, payload });
+        }
+        function progress(type: string, payload: any) {
+          send({ type: `${type}/progress`, payload });
+        }
         if (who && !clients[who]) {
           clients[who] = true;
           // 接收前端的数据
@@ -56,7 +72,16 @@ export { createSocket, socket } from './client';
             } catch (error) {
               action = {};
             }
-            const { type, payload } = action;
+            const { type = '', payload = {} } = action;
+
+            const serviceArgs = {
+              type,
+              payload,
+              send,
+              success: success.bind(this, type),
+              failure: failure.bind(this, type),
+              progress: progress.bind(this, type),
+            };
             switch (type) {
               case MESSAGE_TYPE.hash:
               case MESSAGE_TYPE.stillOk:
@@ -69,18 +94,16 @@ export { createSocket, socket } from './client';
               case 'call':
                 // 用于和客户端通信，比如从项目的客户端发给 ui 的客户端
                 console.log('[MongChhi] call me!', payload?.type ?? '');
-                g_ws.send(
-                  JSON.stringify({
-                    type: payload?.type ?? 'call',
-                    payload: payload,
-                  }),
-                );
+                send({
+                  type: payload?.type ?? 'call',
+                  payload: payload,
+                });
                 break;
               default:
                 await api.applyPlugins({
                   key: 'onMongChhiSocket',
                   type: api.ApplyPluginsType.event,
-                  args: { send: g_ws.send, type, payload },
+                  args: serviceArgs,
                 });
                 break;
             }
