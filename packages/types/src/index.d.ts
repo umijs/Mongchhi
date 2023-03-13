@@ -15,9 +15,12 @@ export interface IEvent<T> {
 }
 
 export interface SocketAction {
-  type?: string;
+  type: string;
   payload?: any;
-  send?: any;
+  send: any;
+  success:(payload?:any)=>void,
+  failure:(payload?:any)=>void,
+  progress:(payload?:any)=>void,
 }
 
 export type IApi = IUmiApi & {
