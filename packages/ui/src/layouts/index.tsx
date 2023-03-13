@@ -1,10 +1,10 @@
+import MyFloatButton from '@/components/MyFloatButton';
 import { TheFooter } from '@/components/TheFooter';
 import { useDark } from '@/hooks/useDark';
 import { App, ConfigProvider, Layout, theme } from 'antd';
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'umi';
 import { NotFoundLayout } from './404';
-import MyFloatButton from '@/components/MyFloatButton';
 
 const { darkAlgorithm, defaultAlgorithm, useToken } = theme;
 
