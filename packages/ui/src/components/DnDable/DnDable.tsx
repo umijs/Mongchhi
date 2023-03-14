@@ -57,7 +57,13 @@ export const DnDable: FC = ({ data, children }) => {
 
   return (
     <div ref={setNodeRef} style={styleDropp}>
-      <button ref={setNode} type="button" style={styleDragg} {...listeners} {...attributes}>
+      <button
+        ref={setNode}
+        type="button"
+        style={styleDragg}
+        {...listeners}
+        {...attributes}
+      >
         {children}
       </button>
     </div>
