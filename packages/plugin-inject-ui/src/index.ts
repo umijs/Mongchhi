@@ -56,4 +56,23 @@ export default (api: IApi) => {
       GUmiUIFlagPath: winPath(require.resolve(join(UI_DIR, 'GUmiUIFlag'))),
     });
   });
+
+  api.addEntryCodeAhead(
+    () => `
+    (() => {
+      try {
+        const ua = window.navigator.userAgent;
+        const isIE = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
+        if (isIE) return;
+
+        // Mongchhi UI Buddle
+        require('${winPath(join(__dirname, './ui/bubble'))}').default({
+          path: '${winPath(api.cwd)}',
+        });
+      } catch (e) {
+        console.warn('Mongchhi UI render error:', e);
+      }
+    })();
+  `,
+  );
 };
