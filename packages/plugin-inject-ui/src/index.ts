@@ -62,7 +62,7 @@ export default (api: IApi) => {
     (() => {
       try {
         const ua = window.navigator.userAgent;
-        const isIE = ua.indexOf(MSIE ') > -1 || ua.indexOf('Trident/') > -1;
+        const isIE = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
         if (isIE) return;
 
         // Mongchhi UI Buddle
