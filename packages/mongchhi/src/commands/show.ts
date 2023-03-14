@@ -69,12 +69,10 @@ export default (api: IApi) => {
         return null;
       }
       ws = createWebSocketServer(server);
-      // 将 socket 连接共享给插件
-      (global as any).g_mongchhi_ws = ws;
       // onDevCompileDone 在 umi dev 的时候才会触发，这里手动执行一下
       api.applyPlugins({
         key: 'onDevCompileDone',
-        args: {},
+        args: { ws },
       });
 
       // 找一个可用端口（默认3000）
