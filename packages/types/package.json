@@ -14,8 +14,8 @@
     "build": "father build"
   },
   "devDependencies": {
-    "@umijs/bundler-webpack": "^4.0.53",
-    "@umijs/preset-umi": "^4.0.53"
+    "@umijs/bundler-webpack": "4.0.0-canary.20230314.1",
+    "@umijs/preset-umi": "4.0.0-canary.20230314.1"
   },
   "publishConfig": {
     "access": "public"

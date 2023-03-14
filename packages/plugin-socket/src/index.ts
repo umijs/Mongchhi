@@ -1,8 +1,4 @@
-import type {
-  GlobalWebSocketServer,
-  IApi,
-  SocketAction,
-} from '@mongchhi/types';
+import type { IApi, SocketAction, SocketMessage } from '@mongchhi/types';
 import { join } from 'path';
 import url from 'url';
 import { DIR_NAME, MESSAGE_TYPE, TEMPLATES_DIR } from './constants';
@@ -36,18 +32,16 @@ export { createSocket, socket } from './client';
       `import { createSocket } from '@@/${DIR_NAME}/client';createSocket()`,
     ];
   });
-  api.onDevCompileDone(() => {
+  api.onDevCompileDone(({ ws: g_ws }) => {
     // mongchhi 主程序时，g_ws 为 g_mongchhi_ws
     // dev 时，g_ws 为 g_umi_ws
-    const g_ws: GlobalWebSocketServer =
-      (global as any)?.g_mongchhi_ws || (global as any)?.g_umi_ws;
     if (g_ws) {
       function send(action: any) {
         let message = action;
         if (typeof action !== 'string') {
           message = JSON.stringify(action);
         }
-        g_ws.send(message);
+        g_ws!.send(message);
       }
       g_ws.wss.on('connection', async (ws, req: any) => {
         const urlParts = url.parse(req.url, true);
@@ -66,7 +60,7 @@ export { createSocket, socket } from './client';
           clients[who] = true;
           // 接收前端的数据
           ws.on('message', async (msg: any) => {
-            let action: SocketAction = {};
+            let action: SocketMessage = {};
             try {
               action = JSON.parse(msg);
             } catch (error) {
@@ -81,7 +75,7 @@ export { createSocket, socket } from './client';
               success: success.bind(this, type),
               failure: failure.bind(this, type),
               progress: progress.bind(this, type),
-            };
+            } as SocketAction;
             switch (type) {
               case MESSAGE_TYPE.hash:
               case MESSAGE_TYPE.stillOk:
@@ -110,35 +104,6 @@ export { createSocket, socket } from './client';
           });
         }
       });
-      // 给前端发数据
-      // global.g_umi_ws.send(JSON.stringify({ type: 'MongChhi serve', data: 'first' }));
-
-      // 插件中添加
-      // import { MongChhiIApi } from '../types';
-
-      // export default (api: IApi) => {
-      //   api.onMongChhiSocket(({ type, send, payload }) => {
-      //     switch (type) {
-      //       case 'call':
-      //         break;
-      //       default:
-      //       // Do nothing
-      //     }
-      //   });
-      // };
-
-      // 前端添加 监听
-      // import { socket } from 'umi';
-      // useEffect(() => {
-      //   // 支持卸载
-      //   return socket.listen((type) => {
-      //     console.log(type);
-      //   });
-      // }, []);
-
-      // 前端发送
-      // import { socket } from 'umi';
-      // socket.send()
     }
   });
 };

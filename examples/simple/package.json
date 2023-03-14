@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "antd": "^5.3.0",
-    "umi": "^4.0.53"
+    "umi": "4.0.0-canary.20230314.1"
   },
   "devDependencies": {
     "@mongchhi/plugin-inject-ui": "workspace:*",

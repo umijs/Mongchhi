@@ -14,13 +14,16 @@ export interface IEvent<T> {
   }): void;
 }
 
-export interface SocketAction {
-  type: string;
-  payload?: any;
-  send: any;
+export interface SocketAction extends SocketMessage{
   success:(payload?:any)=>void,
   failure:(payload?:any)=>void,
   progress:(payload?:any)=>void,
+}
+
+export interface SocketMessage {
+  type?: string;
+  payload?: any;
+  send?: any;
 }
 
 export type IApi = IUmiApi & {
