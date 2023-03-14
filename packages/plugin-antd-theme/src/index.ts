@@ -1,4 +1,5 @@
 import { IApi } from '@mongchhi/types';
+import { semver} from '@umijs/utils';
 import fs from 'fs';
 import path from 'path';
 import { DIR_NAME } from './constants';
@@ -7,9 +8,15 @@ const themeFilePath = 'src/theme-token.json';
 
 export default (api: IApi) => {
   // 第一部分：项目应用逻辑
+
+  const antdPkgPath = path.join(api.cwd, './node_modules/antd/package.json');
   const localThemeFile = path.join(api.cwd, themeFilePath);
-  // 本地有主题配置，进行加载
-  if (fs.existsSync(localThemeFile)) {
+  // 本地有主题配置，已安装 antd@5.x ，则加载主题插件
+  if (
+    fs.existsSync(localThemeFile) &&
+    fs.existsSync(antdPkgPath) &&
+    semver.gte(require(antdPkgPath).version, '5.0.0')
+  ) {
     const tmpPath = `${DIR_NAME}/antd-theme-layout.tsx`;
     api.onGenerateFiles(() => {
       api.writeTmpFile({
@@ -33,6 +40,8 @@ export default () => (
     ]);
   }
 
+  // 第二部分：Mongchhi 管理逻辑
+
   const getAntdThemeFromFile = (cwd = api.cwd as string): object => {
     const themeFile = path.join(cwd, themeFilePath);
     if (fs.existsSync(themeFile)) {
@@ -45,7 +54,6 @@ export default () => (
     return {};
   };
 
-  // 第二部分：Mongchhi 管理逻辑
   const saveAntdThemeToFile = (
     cwd = api.cwd as string,
     token: object,
