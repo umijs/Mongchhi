@@ -1,0 +1,25 @@
+{
+  "name": "@mongchhi/controller",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev",
+    "watch": "father dev"
+  },
+  "dependencies": {
+    "@umijs/utils": "4.0.0-canary.20230309.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
+}
