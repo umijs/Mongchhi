@@ -1,4 +1,5 @@
 import { IApi } from '@mongchhi/types';
+import { semver} from '@umijs/utils';
 import fs from 'fs';
 import path from 'path';
 import { DIR_NAME } from './constants';
@@ -14,7 +15,7 @@ export default (api: IApi) => {
   if (
     fs.existsSync(localThemeFile) &&
     fs.existsSync(antdPkgPath) &&
-    require(antdPkgPath).version.indexOf('5.') === 0
+    semver.gte(require(antdPkgPath).version, '5.0.0')
   ) {
     const tmpPath = `${DIR_NAME}/antd-theme-layout.tsx`;
     api.onGenerateFiles(() => {
