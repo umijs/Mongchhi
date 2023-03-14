@@ -1,6 +1,7 @@
 import MyFloatButton from '@/components/MyFloatButton';
 import { TheFooter } from '@/components/TheFooter';
 import { useDark } from '@/hooks/useDark';
+import { DndContext } from '@dnd-kit/core';
 import { App, ConfigProvider, Layout, theme } from 'antd';
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'umi';
@@ -35,37 +36,41 @@ const BaseLayout = () => {
   const [darkTheme, changeTheme] = useDark();
   const [colorPrimary, setColorPrimary] = useState<any>();
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: [darkTheme ? darkAlgorithm : defaultAlgorithm],
-        // colorInfo is colorPrimary for antd@4
-        token: !!colorPrimary ? { colorPrimary, colorInfo: colorPrimary } : {},
-      }}
-    >
-      <App>
-        {Math.random()}
-        <Layout
-          hasSider={false}
-          style={{
-            minHeight: '100vh',
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          <Content />
+    <DndContext>
+      <ConfigProvider
+        theme={{
+          algorithm: [darkTheme ? darkAlgorithm : defaultAlgorithm],
+          // colorInfo is colorPrimary for antd@4
+          token: !!colorPrimary
+            ? { colorPrimary, colorInfo: colorPrimary }
+            : {},
+        }}
+      >
+        <App>
           {Math.random()}
-          <Layout.Footer style={{ textAlign: 'center' }}>
-            <TheFooter
-              changeTheme={changeTheme}
-              selectTheme={(color) => {
-                setColorPrimary(color.hex);
-              }}
-            />
-          </Layout.Footer>
-        </Layout>
-        <MyFloatButton></MyFloatButton>
-      </App>
-    </ConfigProvider>
+          <Layout
+            hasSider={false}
+            style={{
+              minHeight: '100vh',
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <Content />
+            {Math.random()}
+            <Layout.Footer style={{ textAlign: 'center' }}>
+              <TheFooter
+                changeTheme={changeTheme}
+                selectTheme={(color) => {
+                  setColorPrimary(color.hex);
+                }}
+              />
+            </Layout.Footer>
+          </Layout>
+          <MyFloatButton></MyFloatButton>
+        </App>
+      </ConfigProvider>
+    </DndContext>
   );
 };
 
