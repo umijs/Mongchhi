@@ -1,21 +1,22 @@
 {
-  "name": "@mongchhi/types",
+  "name": "@mongchhi/controller",
   "version": "0.0.1-alpha.1",
   "description": "",
   "keywords": [],
   "license": "MIT",
   "author": "",
   "main": "dist/index.js",
-  "types": "src/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "father build"
+    "build": "father build",
+    "dev": "father dev",
+    "watch": "father dev"
   },
-  "devDependencies": {
-    "@umijs/bundler-webpack": "4.0.0-canary.20230314.1",
-    "@umijs/preset-umi": "4.0.0-canary.20230314.1"
+  "dependencies": {
+    "@umijs/utils": "4.0.0-canary.20230314.1"
   },
   "publishConfig": {
     "access": "public"
