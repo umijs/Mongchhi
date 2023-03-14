@@ -120,16 +120,22 @@ importers:
 
   packages/plugin-inject-ui:
     specifiers:
+      '@ant-design/icons': ^5.0.1
       '@mongchhi/ast': ^0.0.1-alpha.1
       '@mongchhi/types': ^0.0.1-alpha.1
       '@umijs/bundler-webpack': 4.0.0-canary.20230314.1
       '@umijs/utils': 4.0.0-canary.20230314.1
+      antd: ^5.3.0
+      antd-token-previewer: ^1.1.0-21
       umi: 4.0.0-canary.20230314.1
     dependencies:
+      '@ant-design/icons': registry.npmjs.org/@ant-design/icons/5.0.1
       '@mongchhi/ast': link:../ast
       '@mongchhi/types': link:../types
       '@umijs/bundler-webpack': registry.npmjs.org/@umijs/bundler-webpack/4.0.0-canary.20230314.1
       '@umijs/utils': registry.npmjs.org/@umijs/utils/4.0.0-canary.20230314.1
+      antd: registry.npmjs.org/antd/5.3.0
+      antd-token-previewer: registry.npmjs.org/antd-token-previewer/1.1.0-22
     devDependencies:
       umi: registry.npmjs.org/umi/4.0.0-canary.20230314.1
 
@@ -8656,7 +8662,7 @@ packages:
       is-glob: registry.npmjs.org/is-glob/4.0.3
       semver: registry.npmjs.org/semver/7.3.8
       tsutils: registry.npmjs.org/tsutils/3.21.0_typescript@4.9.5
-      typescript: registry.npmjs.org/typescript/4.9.5
+      typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
 
@@ -19586,7 +19592,7 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: registry.npmjs.org/tslib/1.14.1
-      typescript: registry.npmjs.org/typescript/4.9.5
+      typescript: 4.9.5
 
   registry.npmjs.org/tsx/3.12.3:
     resolution: {integrity: sha512-Wc5BFH1xccYTXaQob+lEcimkcb/Pq+0en2s+ruiX0VEIC80nV7/0s7XRahx8NnsoCnpCVUPz8wrqVSPi760LkA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/tsx/-/tsx-3.12.3.tgz}
