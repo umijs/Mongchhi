@@ -7,6 +7,7 @@ import { DIR_NAME } from './constants';
 const themeFilePath = 'src/theme-token.json';
 
 export default (api: IApi) => {
+  const isDev = ['dev'].includes(api.name);
   // 第一部分：项目应用逻辑
 
   const antdPkgPath = path.join(api.cwd, './node_modules/antd/package.json');
@@ -22,13 +23,23 @@ export default (api: IApi) => {
       api.writeTmpFile({
         noPluginDir: true,
         path: tmpPath,
-        content: `import React from 'react';
+        content: `import React, { useState } from 'react';
 import { Outlet } from 'umi';
 import { ConfigProvider } from 'antd';
 import token from '${localThemeFile}';
-export default () => (
-  <ConfigProvider theme={{ token }}><Outlet /></ConfigProvider>
-);
+export default () => {
+  ${
+    isDev
+      ? `  const [theme, setTheme] = useState({ token });
+  (window as any).__mongchhi_antd_theme = {};
+  (window as any).__mongchhi_antd_theme.theme = { token };
+  (window as any).__mongchhi_antd_theme.setTheme = setTheme;`
+      : '  const theme = { token };'
+  }
+  return (
+    <ConfigProvider theme={theme}><Outlet /></ConfigProvider>
+  );
+};
 `,
       });
     });
