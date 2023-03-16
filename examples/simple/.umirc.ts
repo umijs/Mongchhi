@@ -6,6 +6,8 @@ export default defineConfig({
     { path: '/', component: 'index' },
     { path: '/docs', component: 'docs' },
   ],
-  injectUi: true,
+  injectUi: {
+    useDnD: false,
+  },
   npmClient: 'pnpm',
 });
