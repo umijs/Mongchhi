@@ -11,4 +11,4 @@ export enum MESSAGE_TYPE {
   invalid = 'invalid',
 }
 
-export const DIR_NAME = 'plugin-MongChhi';
+export const DIR_NAME = 'plugin-mongchhi-socket';

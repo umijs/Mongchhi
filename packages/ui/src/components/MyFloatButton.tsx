@@ -1,5 +1,6 @@
 import { Button } from 'antd';
 import React, { useEffect, useRef } from 'react';
+import { socket } from 'umi';
 
 const MyFloatButton: React.FC = () => {
   const styleInfo = {
@@ -100,6 +101,14 @@ const MyFloatButton: React.FC = () => {
         style={{
           width: '100%',
           height: '100%',
+        }}
+        onClick={() => {
+          socket.send({
+            type: 'call',
+            payload: {
+              type: 'switchBlockEditMode',
+            },
+          });
         }}
       >
         ?

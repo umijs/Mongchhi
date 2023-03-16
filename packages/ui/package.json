@@ -6,7 +6,6 @@
     "dist"
   ],
   "scripts": {
-    "build": "umi build",
     "preview": "umi preview",
     "setup": "umi setup",
     "start": "umi dev"

@@ -9,7 +9,10 @@ export default defineConfig({
   icons: {
     autoInstall: {},
   },
-  // mfsu: false,
+  injectUi: {
+    useDnD: true,
+  },
+  mfsu: false,
   locale: {
     // 默认使用 src/locales/zh-CN.ts 作为多语言文件
     default: 'zh-CN',

@@ -16,6 +16,7 @@ function HomePage() {
       >
         Yay! Welcome to umi!
       </h2>
+      <h1>234343</h1>
     </div>
   );
 }

@@ -12,8 +12,9 @@ export enum MESSAGE_TYPE {
   invalid = 'invalid',
 }
 
-export const DIR_NAME = 'plugin-mengchhi';
+export const DIR_NAME = 'plugin-inject-ui';
 
 export const BLOCK_LAYOUT_PREFIX = 'l-';
 export const UMI_UI_FLAG_PLACEHOLDER = 'UmiUIFlag';
 export const UI_ADD_COMPONENT = 'GUmiUIFlag';
+export const UI_DNDABLE = 'DnDable';
