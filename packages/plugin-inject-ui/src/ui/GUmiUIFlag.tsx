@@ -22,27 +22,16 @@ export default class GUmiUIFlag extends React.Component<
     super(props);
     this.state = {
       hovered: false,
-      visible: true,
+      visible: false,
     };
   }
 
-  handleMessage = (event) => {
+  handleMessage = ({ type }) => {
     try {
-      const { action } = JSON.parse(event.data);
-      switch (action) {
-        case 'umi.ui.enableBlockEditMode':
+      switch (type) {
+        case 'switchBlockEditMode':
           this.setState({
-            visible: true,
-          });
-          break;
-        case 'umi.ui.disableBlockEditMode':
-          this.setState({
-            visible: false,
-          });
-          break;
-        case 'umi.ui.enable.GUmiUIFlag':
-          this.setState({
-            visible: true,
+            visible: !this.state.visible,
           });
           break;
         default:
@@ -52,7 +41,10 @@ export default class GUmiUIFlag extends React.Component<
   };
 
   componentDidMount() {
+    console.log(1121133123123213);
+
     // window.addEventListener('message', this.handleMessage, false);
+    socket.listen(this.handleMessage);
   }
 
   componentWillUnmount() {
