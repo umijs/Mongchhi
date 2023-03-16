@@ -132,7 +132,7 @@ export default () => {
     }
     return false;
   };
-  
+
   return {
     pre(file: any) {
       file.set(CACHE_LIBS, {});
