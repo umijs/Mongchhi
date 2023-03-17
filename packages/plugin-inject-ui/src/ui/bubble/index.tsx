@@ -15,7 +15,7 @@ const UI: React.FC = () => {
       <Drawer
         open={drawerVisible}
         onClose={() => setDrawerVisible(false)}
-        width={600}
+        width={900}
         mask={false}
       >
         {drawerVisible && <ThemeEditor />}

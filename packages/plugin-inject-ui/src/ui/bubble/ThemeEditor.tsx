@@ -1,23 +1,39 @@
-import { ThemeEditor } from 'antd-token-previewer';
+import useControlledTheme from 'antd-token-previewer/es/hooks/useControlledTheme';
+import TokenPanelPro from 'antd-token-previewer/es/token-panel-pro';
 import React, { useState } from 'react';
 
-export default () => {
-  const [theme, setTheme] = useState(
-    (window as any).__mongchhi_antd_theme?.theme ?? {},
-  );
-  // todo 样式开发
-  return (
-    <ThemeEditor
-      theme={{ name: 'Custom Theme', key: 'test', config: theme }}
-      style={{ height: 'calc(100vh)' }}
-      onThemeChange={(t: any) => {
-        setTheme(t.config);
-        if (
-          typeof (window as any).__mongchhi_antd_theme?.setTheme === 'function'
-        ) {
-          (window as any).__mongchhi_antd_theme.setTheme(t.config);
+const defaultTheme = {
+  name: 'Custom Theme',
+  key: 'test',
+  config: {},
+};
+
+const ThemeEditor = () => {
+  const [config, setConfig] = useState( (window as any).__mongchhi_antd_theme?.theme ?? {});
+  const { theme, infoFollowPrimary, onInfoFollowPrimaryChange } =
+    useControlledTheme({
+      theme: {
+        ... defaultTheme,
+        config,
+      },
+      defaultTheme,
+      onChange: (theme: any) => {
+        setConfig(theme.config);
+        if ((window as any).__mongchhi_antd_theme?.setTheme) {
+          (window as any).__mongchhi_antd_theme.setTheme(theme.config);
         }
-      }}
-    ></ThemeEditor>
+      },
+    });
+
+  return (
+    <TokenPanelPro
+      aliasOpen={true}
+      theme={theme}
+      style={{ flex: 1 }}
+      infoFollowPrimary={infoFollowPrimary}
+      onInfoFollowPrimaryChange={onInfoFollowPrimaryChange}
+    />
   );
 };
+
+export default ThemeEditor;
