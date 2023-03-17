@@ -8,7 +8,7 @@ const defaultTheme = {
   config: {},
 };
 
-const ThemeEditor () => {
+const ThemeEditor = () => {
   const { theme, infoFollowPrimary, onInfoFollowPrimaryChange } =
     useControlledTheme({
       theme: {
@@ -18,7 +18,7 @@ const ThemeEditor () => {
       defaultTheme,
       onChange: (theme: any) => {
         if ((window as any).__mongchhi_antd_theme?.setTheme) {
-          (window as any).__mongchhi_antd_theme.setTheme(t.config);
+          (window as any).__mongchhi_antd_theme.setTheme(theme.config);
         }
       },
     });
