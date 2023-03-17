@@ -1,23 +1,37 @@
-import { ThemeEditor } from 'antd-token-previewer';
-import React, { useState } from 'react';
+import useControlledTheme from 'antd-token-previewer/es/hooks/useControlledTheme';
+import TokenPanelPro from 'antd-token-previewer/es/token-panel-pro';
+import React from 'react';
 
-export default () => {
-  const [theme, setTheme] = useState(
-    (window as any).__mongchhi_antd_theme?.theme ?? {},
-  );
-  // todo 样式开发
-  return (
-    <ThemeEditor
-      theme={{ name: 'Custom Theme', key: 'test', config: theme }}
-      style={{ height: 'calc(100vh)' }}
-      onThemeChange={(t: any) => {
-        setTheme(t.config);
-        if (
-          typeof (window as any).__mongchhi_antd_theme?.setTheme === 'function'
-        ) {
+const defaultTheme = {
+  name: 'Custom Theme',
+  key: 'test',
+  config: {},
+};
+
+const ThemeEditor () => {
+  const { theme, infoFollowPrimary, onInfoFollowPrimaryChange } =
+    useControlledTheme({
+      theme: {
+        ... defaultTheme,
+        config: (window as any).__mongchhi_antd_theme?.theme ?? {},
+      },
+      defaultTheme,
+      onChange: (theme: any) => {
+        if ((window as any).__mongchhi_antd_theme?.setTheme) {
           (window as any).__mongchhi_antd_theme.setTheme(t.config);
         }
-      }}
-    ></ThemeEditor>
+      },
+    });
+
+  return (
+    <TokenPanelPro
+      aliasOpen={true}
+      theme={theme}
+      style={{ flex: 1 }}
+      infoFollowPrimary={infoFollowPrimary}
+      onInfoFollowPrimaryChange={onInfoFollowPrimaryChange}
+    />
   );
 };
+
+export default ThemeEditor;
