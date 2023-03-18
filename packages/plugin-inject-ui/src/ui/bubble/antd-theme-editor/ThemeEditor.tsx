@@ -1,6 +1,6 @@
 import useControlledTheme from 'antd-token-previewer/es/hooks/useControlledTheme';
 import TokenPanelPro from 'antd-token-previewer/es/token-panel-pro';
-import React, { useState } from 'react';
+import React from 'react';
 
 const defaultTheme = {
   name: 'Custom Theme',
@@ -8,21 +8,20 @@ const defaultTheme = {
   config: {},
 };
 
-const ThemeEditor = () => {
-  const [config, setConfig] = useState( (window as any).__mongchhi_antd_theme?.theme ?? {});
+interface ThemeEditorProps {
+  theme: any;
+  onThemeChange: (theme: any) => void;
+}
+
+const ThemeEditor = (props: ThemeEditorProps) => {
   const { theme, infoFollowPrimary, onInfoFollowPrimaryChange } =
     useControlledTheme({
       theme: {
-        ... defaultTheme,
-        config,
+        ...defaultTheme,
+        config: props.theme,
       },
       defaultTheme,
-      onChange: (theme: any) => {
-        setConfig(theme.config);
-        if ((window as any).__mongchhi_antd_theme?.setTheme) {
-          (window as any).__mongchhi_antd_theme.setTheme(theme.config);
-        }
-      },
+      onChange: props.onThemeChange,
     });
 
   return (
