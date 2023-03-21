@@ -84,7 +84,7 @@ export default (api: IApi) => {
 
         // Mongchhi UI Buddle
         require('${winPath(join(__dirname, './ui/bubble'))}').default({
-          path: '${winPath(api.cwd)}',
+          cwd: '${winPath(api.cwd)}',
         });
       } catch (e) {
         console.warn('Mongchhi UI render error:', e);

@@ -1,5 +1,5 @@
 import { IApi } from '@mongchhi/types';
-import { semver} from '@umijs/utils';
+import { semver } from '@umijs/utils';
 import fs from 'fs';
 import path from 'path';
 import { DIR_NAME } from './constants';
@@ -31,9 +31,7 @@ export default () => {
   ${
     isDev
       ? `  const [theme, setTheme] = useState({ token });
-  (window as any).__mongchhi_antd_theme = {};
-  (window as any).__mongchhi_antd_theme.theme = { token };
-  (window as any).__mongchhi_antd_theme.setTheme = setTheme;`
+  (window as any).__mongchhi_antd_set_theme = setTheme;`
       : '  const theme = { token };'
   }
   return (

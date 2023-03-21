@@ -1,40 +1,28 @@
-import { FormatPainterFilled } from '@ant-design/icons';
-import { Drawer, FloatButton } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-import ThemeEditor from './ThemeEditor';
+import AntdThemeEditor from './antd-theme-editor';
+
+interface UIProps {
+  cwd: string;
+}
 
 const doc = window.document;
 const node = doc.createElement('div');
 doc.body.appendChild(node);
 
-const UI: React.FC = () => {
-  const [drawerVisible, setDrawerVisible] = useState(false);
+const UI: React.FC<UIProps> = (props) => {
+  const { cwd } = props;
   return (
     <>
-      <Drawer
-        open={drawerVisible}
-        onClose={() => setDrawerVisible(false)}
-        width={900}
-        mask={false}
-      >
-        {drawerVisible && <ThemeEditor />}
-      </Drawer>
-      <FloatButton
-        shape="circle"
-        type="primary"
-        icon={<FormatPainterFilled />}
-        onClick={() => setDrawerVisible(true)}
-        style={{ right: '8px' }}
-      />
+      <AntdThemeEditor cwd={cwd} />
     </>
   );
 };
 
-export default () => {
+export default (props: UIProps) => {
   const root = createRoot(node);
   root.render(
     // <ErrorBoundary>
-    <UI />,
+    <UI {...props} />,
   );
 };
