@@ -33,6 +33,13 @@ const AntdThemeEditor: React.FC<{ cwd: string }> = (props) => {
   };
 
   useEffect(() => {
+    // onready
+    socket.send({
+      type: get_antd_theme,
+      payload: {
+        token: cwd,
+      },
+    });
     // 监听 ws
     socket.listen((message: any) => {
       const { type, payload } = message;
@@ -41,17 +48,6 @@ const AntdThemeEditor: React.FC<{ cwd: string }> = (props) => {
         case get_antd_theme:
           initTheme = payload;
           setTheme(payload);
-          break;
-        // todo ws onready
-        case 'ok':
-        case 'still-ok':
-          // 请求初始主题
-          socket.send({
-            type: get_antd_theme,
-            payload: {
-              token: cwd,
-            },
-          });
           break;
         default:
       }

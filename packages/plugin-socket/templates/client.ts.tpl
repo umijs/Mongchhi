@@ -41,6 +41,9 @@ function getSocketHost() {
   return `${isHttps ? 'wss' : 'ws'}://${host}?who=MongChhi${key}`;
 }
 
+const messageQueue = new Set();
+let isOpen = false;
+
 export function createSocket() {
   // 连接中，直接返回
   if (socket && socket.readyState === WebSocket.OPEN) {
@@ -52,12 +55,25 @@ export function createSocket() {
     if (typeof action !== 'string') {
       message = JSON.stringify(action);
     }
-    _socket.send(message);
+    if (isOpen) {
+      _socket.send(message);
+    } else {
+      messageQueue.add(message);
+    }
   }
   let pingTimer: NodeJS.Timer;
 
   _socket.listen = (callback: Subscription<SocketAction>) => {
     return socketEmitter.useSubscription(callback);
+  };
+
+  _socket.onopen = () => {
+    isOpen = true;
+    // 发送队列中的消息
+    for (const message of messageQueue) {
+      _socket.send(message);
+      messageQueue.delete(message);
+    }
   };
 
   _socket.onmessage = async (message) => {
@@ -84,6 +100,7 @@ export function createSocket() {
     }
   };
   _socket.onclose = async () => {
+    isOpen = false;
     if (pingTimer) clearInterval(pingTimer);
     console.info('[MongChhi] Dev server disconnected. Polling for restart...');
     // webpack-hmr 会尝试重连，这里可以忽略
