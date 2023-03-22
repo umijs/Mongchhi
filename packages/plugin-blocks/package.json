@@ -1,0 +1,27 @@
+{
+  "name": "@mongchhi/plugin-blocks",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev",
+    "watch": "father dev"
+  },
+  "dependencies": {
+    "@mongchhi/ast": "^0.0.1-alpha.1",
+    "@mongchhi/types": "^0.0.1-alpha.1",
+    "@umijs/utils": "4.0.0-canary.20230314.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "ead5a76c5d84d1e7b1e49d3b030ba3ac04eab0cb"
+}

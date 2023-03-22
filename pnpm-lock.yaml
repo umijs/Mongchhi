@@ -118,6 +118,16 @@ importers:
     devDependencies:
       antd: registry.npmjs.org/antd/5.3.0
 
+  packages/plugin-blocks:
+    specifiers:
+      '@mongchhi/ast': ^0.0.1-alpha.1
+      '@mongchhi/types': ^0.0.1-alpha.1
+      '@umijs/utils': 4.0.0-canary.20230314.1
+    dependencies:
+      '@mongchhi/ast': link:../ast
+      '@mongchhi/types': link:../types
+      '@umijs/utils': registry.npmjs.org/@umijs/utils/4.0.0-canary.20230314.1
+
   packages/plugin-inject-ui:
     specifiers:
       '@ant-design/icons': ^5.0.1
