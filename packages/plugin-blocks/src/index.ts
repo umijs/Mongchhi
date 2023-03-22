@@ -9,6 +9,4 @@ export default (api: IApi) => {
       },
     },
   });
-
-  
 };
