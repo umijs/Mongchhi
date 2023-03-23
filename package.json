@@ -37,8 +37,8 @@
     "test:e2e:ui": "start-test ui :3000/__umi/api/status test:pw",
     "test:pw": "playwright test",
     "test:show": "playwright show-report",
-    "ui:build": "cd packages/ui && pnpm build",
-    "ui": "cd packages/ui && pnpm start"
+    "ui": "cd packages/ui && pnpm start",
+    "ui:build": "cd packages/ui && pnpm build"
   },
   "devDependencies": {
     "@alita/test": "1.0.0-beta.5",
