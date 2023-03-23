@@ -25,7 +25,7 @@ export default (api: IApi) => {
       },
     },
   });
-
+  if (!api?.userConfig?.injectUi) return;
   api.addExtraBabelPlugins(() => {
     const { useDnD = false } = api.userConfig.injectUi;
     const routesFilename = Object.values(api.appData.routes)

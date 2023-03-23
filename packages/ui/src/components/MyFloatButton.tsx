@@ -90,7 +90,7 @@ const MyFloatButton: React.FC = () => {
       style={{
         position: 'fixed',
         bottom: '30px',
-        right: '0px',
+        left: '0px',
         width: styleInfo.itemWidth,
         height: styleInfo.itemHeight,
       }}

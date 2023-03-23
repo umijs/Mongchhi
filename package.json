@@ -37,6 +37,7 @@
     "test:e2e:ui": "start-test ui :3000/__umi/api/status test:pw",
     "test:pw": "playwright test",
     "test:show": "playwright show-report",
+    "ui:build": "cd packages/ui && pnpm build",
     "ui": "cd packages/ui && pnpm start"
   },
   "devDependencies": {
