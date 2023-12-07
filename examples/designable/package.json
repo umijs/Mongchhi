@@ -17,7 +17,7 @@
     "@formily/reactive-react": "^2.2.22",
     "antd": "^4.15.4",
     "classnames": "^2.3.2",
-    "umi": "4.0.0-canary.20230314.1"
+    "umi": "4.0.89"
   },
   "devDependencies": {
     "@mongchhi/plugin-inject-ui": "workspace:*",

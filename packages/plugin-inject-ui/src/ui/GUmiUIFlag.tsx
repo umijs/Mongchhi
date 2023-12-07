@@ -41,8 +41,6 @@ export default class GUmiUIFlag extends React.Component<
   };
 
   componentDidMount() {
-    console.log(1121133123123213);
-
     // window.addEventListener('message', this.handleMessage, false);
     socket.listen(this.handleMessage);
   }
