@@ -1,14 +1,7 @@
 import { Popover, theme, Tooltip } from 'antd';
 import React, { FC } from 'react';
 import { ColorResult, SketchPicker } from 'react-color';
-import {
-  getAllLocales,
-  getLocale,
-  Icon,
-  Link,
-  setLocale,
-  useIntl,
-} from 'umi';
+import { getAllLocales, getLocale, Icon, Link, setLocale, useIntl } from 'umi';
 
 interface TheFooterProps {
   changeTheme: () => void;
