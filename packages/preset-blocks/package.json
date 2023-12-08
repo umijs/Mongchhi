@@ -1,6 +1,6 @@
 {
   "name": "@umijs/preset-blocks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -15,9 +15,9 @@
     "dev": "father dev"
   },
   "dependencies": {
-    "@mongchhi/plugin-blocks": "^0.0.1",
-    "@mongchhi/plugin-sdk": "^0.0.1",
-    "@mongchhi/plugin-socket": "^0.0.1"
+    "@mongchhi/plugin-blocks": "^0.0.2",
+    "@mongchhi/plugin-sdk": "^0.0.2",
+    "@mongchhi/plugin-socket": "^0.0.2"
   },
   "publishConfig": {
     "access": "public"

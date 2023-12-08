@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/plugin-socket",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -16,8 +16,8 @@
     "watch": "father dev"
   },
   "dependencies": {
-    "@mongchhi/types": "^0.0.1",
-    "@mongchhi/utils": "^0.0.1",
+    "@mongchhi/types": "^0.0.2",
+    "@mongchhi/utils": "^0.0.2",
     "@umijs/bundler-webpack": "4.0.89",
     "@umijs/utils": "4.0.89",
     "body-parser": "^1.20.2"

@@ -1,6 +1,6 @@
 {
   "name": "mongchhi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -22,10 +22,10 @@
     "dev": "father dev"
   },
   "dependencies": {
-    "@mongchhi/preset-mongchhi": "^0.0.1",
-    "@mongchhi/types": "^0.0.1",
-    "@mongchhi/ui-client": "^0.0.1",
-    "@mongchhi/utils": "^0.0.1",
+    "@mongchhi/preset-mongchhi": "^0.0.2",
+    "@mongchhi/types": "^0.0.2",
+    "@mongchhi/ui-client": "^0.0.2",
+    "@mongchhi/utils": "^0.0.2",
     "@umijs/bundler-utils": "4.0.89",
     "@umijs/bundler-webpack": "4.0.89",
     "@umijs/core": "4.0.89",
