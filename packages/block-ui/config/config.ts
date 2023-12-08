@@ -7,7 +7,6 @@ export default defineConfig({
   plugins: [
     require.resolve('@umijs/plugins/dist/locale'),
     require.resolve('@mongchhi/plugin-socket'),
-    'umi-plugin-route-mdx',
   ],
   icons: {
     autoInstall: {},
