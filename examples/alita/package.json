@@ -2,15 +2,20 @@
   "name": "@examples/alita",
   "private": true,
   "scripts": {
+    "block": "alita block add https://github.com/ant-design/pro-blocks/tree/feat-antd5/UserRegister --path=/user/register --skip-dependencies --page --branch=feat-antd5 --skip-modify-routes",
     "build": "alita build",
     "dev": "alita dev",
     "start": "alita dev"
   },
   "dependencies": {
     "@alita/flow": "*",
+    "@mongchhi/plugin-blocks": "workspace:*",
     "@mongchhi/preset-mongchhi": "workspace:*",
     "alita": "^3.3.7",
     "antd-mobile": "^5.15.1",
+    "classnames": "^2.2.6",
+    "moment": "^2.22.2",
+    "nzh": "^1.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
