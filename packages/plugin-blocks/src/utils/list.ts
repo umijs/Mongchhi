@@ -4,13 +4,13 @@ import { writeFileSync } from 'fs';
 import inquirer from 'inquirer';
 import ora from 'ora';
 import { dirname } from 'path';
+import { addBlock } from './addBlock';
 import {
   genBlockName,
   getBlockListFromGit,
   getCacheBlockByUrl,
   printBlocks,
 } from './util';
-
 /**
  * 交互型区块选择
  * - 选择区块名
@@ -121,8 +121,7 @@ export async function getDefaultBlockList(
       blockArray = printBlocks(blockArray, true);
 
       const args = (await selectInstallBlockArgs(blockArray)) as any;
-      console.log(args);
-      // return addBlock({ ..._, ...args, ...blockConfig }, {}, api);
+      return addBlock({ ..._, ...args, ...blockConfig }, {}, api);
     }
   }
   return new Error('No block found');

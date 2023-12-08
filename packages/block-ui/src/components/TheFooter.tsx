@@ -4,7 +4,6 @@ import { ColorResult, SketchPicker } from 'react-color';
 import {
   getAllLocales,
   getLocale,
-  history,
   Icon,
   Link,
   setLocale,
@@ -64,7 +63,7 @@ const TheFooter: FC<TheFooterProps> = ({ changeTheme, selectTheme }) => {
           style={{ margin: '0 8px' }}
         />
       </Tooltip>
-      <Tooltip
+      {/* <Tooltip
         title={intl.formatMessage({
           id: 'button.about',
         })}
@@ -75,7 +74,7 @@ const TheFooter: FC<TheFooterProps> = ({ changeTheme, selectTheme }) => {
           data-testid="contact"
           style={{ margin: '0 8px' }}
         />
-      </Tooltip>
+      </Tooltip> */}
       <Tooltip title={'GitHub'}>
         <a
           rel="noreferrer"
