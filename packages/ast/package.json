@@ -11,5 +11,6 @@
   "dependencies": {
     "@umijs/ast": "4.0.89",
     "@umijs/bundler-utils": "4.0.89"
-  }
+  },
+  "gitHead": "0a234fb0354105eec0b7a914c3bb017acea69a65"
 }
