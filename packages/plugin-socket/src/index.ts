@@ -22,7 +22,7 @@ export default (api: IApi) => {
         noPluginDir: true,
         path: `${DIR_NAME}/index.tsx`,
         content: `
-export { createSocket, socket } from './client';
+export { createSocket, socket, callRemote, listenRemote } from './client';
 `,
       });
     },
