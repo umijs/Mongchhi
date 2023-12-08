@@ -30,5 +30,8 @@
   "devDependencies": {
     "@types/qs": "^6.9.10"
   },
-  "gitHead": "f0f9f0bf8c2582cb37cd54cb10f11ccf57b9d81f"
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "b83a93507a0557a853a5b4b9cc1feb7bee066312"
 }
