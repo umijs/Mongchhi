@@ -160,7 +160,7 @@ export async function parseGitUrl(url, closeFastGithub) {
 export async function getParsedData(url, blockConfig) {
   let realUrl;
   const defaultGitUrl =
-    blockConfig.defaultGitUrl || 'https://github.com/umijs/umi-blocks';
+    blockConfig.defaultGitUrl || 'https://github.com/ant-design/pro-blocks';
   if (isGitUrl(url)) {
     realUrl = url;
     // eslint-disable-next-line no-useless-escape

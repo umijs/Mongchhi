@@ -110,4 +110,64 @@ export function createSocket() {
   return socket;
 }
 
-export { socket };
+// 默认一个监听，供页面快速使用
+socketEmitter.useSubscription(({ type, payload }) => {
+  messageHandlers.forEach((h) => {
+    h({ type, payload });
+  });
+})
+
+const messageHandlers: any[] = [];
+
+function callRemote(action) {
+  return new Promise((resolve, reject) => {
+    function removeHandler() {
+      for (const [i, h] of messageHandlers.entries()) {
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        if (h === handler) {
+          messageHandlers.splice(i, 1);
+          break;
+        }
+      }
+    }
+    function handler({ type, payload }) {
+      if (type === `${action.type}/success`) {
+        if (!action.keep) removeHandler();
+        resolve(payload);
+      }
+      if (type === `${action.type}/failure`) {
+        if (!action.keep) removeHandler();
+        reject(payload);
+      }
+      if (type === `${action.type}/progress` && action.onProgress) {
+        action.onProgress(payload);
+      }
+    }
+
+    messageHandlers.push(handler);
+    socket.send(
+      JSON.stringify({
+        ...action,
+      }),
+    );
+  });
+}
+
+function listenRemote(action) {
+  function handler({ type, payload }) {
+    if (type === action.type) {
+      action.onMessage(payload);
+    }
+  }
+  messageHandlers.push(handler);
+  return () => {
+    for (const [i, h] of messageHandlers.entries()) {
+      if (h === handler) {
+        messageHandlers.splice(i, 1);
+        break;
+      }
+    }
+  };
+}
+
+export { socket, callRemote, listenRemote };

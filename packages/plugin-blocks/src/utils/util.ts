@@ -1,12 +1,12 @@
 import execa from '@umijs/deps/compiled/execa';
 import got from '@umijs/deps/compiled/got';
-import { chalk } from '@umijs/utils';
-import { existsSync } from 'fs';
+import { chalk, winPath } from '@umijs/utils';
+import { existsSync, readFileSync } from 'fs';
+import GitUrlParse from 'git-url-parse';
 import ora from 'ora';
 import { join } from 'path';
-
-import GitUrlParse from 'git-url-parse';
 import terminalLink from 'terminal-link';
+import { getParsedData } from './download';
 
 import arrayToTree from './arrayToTree';
 import { BlockData } from './data.d';
@@ -90,17 +90,14 @@ export function printBlocks(blocks, hasLink?) {
   const blockArray = [];
   const loopBlocks = (blockItems, parentPath = '') => {
     blockItems.forEach((block) => {
-      if (block.type === 'block') {
+      if (block.type === 'block' || !block.type) {
         const blockName = join(parentPath, block.path);
         const { previewUrl } = block;
         let name = `📦  ${chalk.cyan(blockName)}  `;
         if (hasLink) {
           // 链接到 pro 的预览界面
           // AccountCenter -> account/center
-          const link = terminalLink(
-            '预览',
-            `https://preview.pro.ant.design/${previewUrl}`,
-          );
+          const link = terminalLink('预览', previewUrl);
           // 增加一个预览的界面
           name += link;
         }
@@ -470,4 +467,20 @@ export async function fetchCDNBlocks({
       success: false,
     };
   }
+}
+
+export async function getCacheBlockByUrl(
+  url: string,
+  absNodeModulesPath: string,
+  blockConfig: any = {},
+) {
+  const ctx: any = await getParsedData(url, blockConfig);
+  // 做个缓存，一直请求 github 的 api 会有 ip 限制，pro block 基本不会更新，或者说，装的旧的影响不大。
+  const cacheFiles = winPath(
+    join(absNodeModulesPath, '.cache', 'block', ctx.id, 'blocks.json'),
+  );
+  if (existsSync(cacheFiles) && blockConfig?.cache) {
+    return [JSON.parse(readFileSync(cacheFiles, 'utf-8')), cacheFiles];
+  }
+  return [null, cacheFiles];
 }

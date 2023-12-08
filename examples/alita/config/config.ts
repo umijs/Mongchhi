@@ -1,8 +1,7 @@
 import { defineConfig } from 'alita';
 
 export default defineConfig({
-  presets: [require.resolve('@mongchhi/preset-mongchhi')],
-  plugins: [require.resolve('@mongchhi/plugin-blocks')],
+  presets: [require.resolve('@umijs/preset-blocks')],
   appType: 'h5',
   keepalive: [/users/],
   aconsole: {
@@ -15,6 +14,7 @@ export default defineConfig({
     npmClient: 'pnpm',
     closeFastGithub: true,
     homedir: false,
+    useUI: true,
   },
   mfsu: false,
   hash: false,

@@ -1,10 +1,16 @@
-import got from '@umijs/deps/compiled/got';
+import { IApi } from '@mongchhi/types';
+import { fsExtra } from '@umijs/utils';
+import { writeFileSync } from 'fs';
 import inquirer from 'inquirer';
 import ora from 'ora';
-
+import { dirname } from 'path';
 import { addBlock } from './addBlock';
-import { genBlockName, getBlockListFromGit, printBlocks } from './util';
-
+import {
+  genBlockName,
+  getBlockListFromGit,
+  getCacheBlockByUrl,
+  printBlocks,
+} from './util';
 /**
  * 交互型区块选择
  * - 选择区块名
@@ -17,7 +23,7 @@ import { genBlockName, getBlockListFromGit, printBlocks } from './util';
  * ]} blockArray
  * @returns Promise<{args}>
  */
-export async function selectInstallBlockArgs(blockArray) {
+export async function selectInstallBlockArgs(blockArray: any[]) {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve) => {
     let locale = false;
@@ -73,33 +79,50 @@ export async function selectInstallBlockArgs(blockArray) {
  * @param {*} _
  * @param {*} blockConfig
  */
-export async function getDefaultBlockList(_, blockConfig: any = {}, api) {
+export async function getDefaultBlockList(
+  _: any,
+  blockConfig: any = {},
+  api: IApi,
+) {
   const spinner = ora();
   let blockArray = [];
   const { defaultGitUrl } = blockConfig;
 
-  spinner.start('🚣  fetch block list');
-
-  // 如果存在 defaultGitUrl 的配置，就从 defaultGitUrl 配置中拿区块列表
-  if (defaultGitUrl) {
-    // 一个 github 的 api,可以获得文件树
-    const files = await getBlockListFromGit(defaultGitUrl);
-    blockArray = printBlocks(files, 'link');
+  const [cacheBlocks, cacheFiles] = await getCacheBlockByUrl(
+    defaultGitUrl,
+    api.paths.absNodeModulesPath,
+    {
+      ...(blockConfig || {}),
+      ..._,
+    },
+  );
+  if (cacheBlocks) {
+    blockArray = cacheBlocks;
   } else {
-    const { body } = await got(`http://blocks.umijs.org/api/blocks`);
-    const { status, error, data } = JSON.parse(body);
-    if (status === 'success') {
-      blockArray = printBlocks(data);
+    spinner.start('🚣  fetch block list');
+
+    // 如果存在 defaultGitUrl 的配置，就从 defaultGitUrl 配置中拿区块列表
+    if (defaultGitUrl) {
+      // 一个 github 的 api,可以获得文件树
+      blockArray = await getBlockListFromGit(defaultGitUrl, true);
+      fsExtra.mkdirpSync(dirname(cacheFiles));
+      writeFileSync(cacheFiles, JSON.stringify(blockArray), 'utf-8');
     } else {
-      throw new Error(error);
+      throw new Error('block.defaultGitUrl no found!');
     }
+    spinner.succeed();
   }
 
-  spinner.succeed();
-
   if (blockArray.length > 0) {
-    const args = (await selectInstallBlockArgs(blockArray)) as any;
-    return addBlock({ ..._, ...args, ...blockConfig }, {}, api);
+    // 自定义的方式，不直接使用 cli 的方式，可能是 ui 操作或者其它
+    if (_.customSelectBlockArgs) {
+      _.customSelectBlockArgs(blockArray);
+    } else {
+      blockArray = printBlocks(blockArray, true);
+
+      const args = (await selectInstallBlockArgs(blockArray)) as any;
+      return addBlock({ ..._, ...args, ...blockConfig }, {}, api);
+    }
   }
   return new Error('No block found');
 }

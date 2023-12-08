@@ -1,8 +1,12 @@
 import { IApi } from '@mongchhi/types';
 import { chalk, logger } from '@umijs/utils';
+import { dirname, join } from 'path';
+import sirv from 'sirv';
 import { addBlock } from './utils/addBlock';
 import { clearGitCache } from './utils/clearGitCache';
 import { getDefaultBlockList } from './utils/list';
+import { getCacheBlockByUrl } from './utils/util';
+const ENTRY_PATH = '/__block_ui/entry';
 
 export default (api: IApi) => {
   api.describe({
@@ -15,6 +19,7 @@ export default (api: IApi) => {
           closeFastGithub: Joi.boolean(),
           branch: Joi.string(),
           homedir: Joi.boolean(),
+          useUI: Joi.boolean(),
         });
       },
       default: {
@@ -22,16 +27,96 @@ export default (api: IApi) => {
         defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
         npmClient: 'pnpm',
         closeFastGithub: true,
-        branch: 'master',
+        branch: 'feat-antd5',
         homedir: true,
+        useUI: false,
       },
     },
   });
 
+  const uiDir = dirname(require.resolve('@mongchhi/ui-block/package.json'));
+
+  api.onBeforeMiddleware(({ app }) => {
+    app.use(
+      ENTRY_PATH,
+      sirv(join(uiDir, 'dist'), {
+        etag: true,
+        dev: true,
+        single: true,
+      }),
+    );
+  });
+
+  api?.onMongChhiSocket?.(async ({ type, payload, success }) => {
+    const { config } = api;
+    const blockConfig = config?.block || {};
+    if (type === 'org.umi.block.list') {
+      const [data] = await getCacheBlockByUrl(
+        blockConfig.defaultGitUrl,
+        api.paths.absNodeModulesPath,
+        blockConfig,
+      );
+      if (data) {
+        success({
+          data,
+        });
+      } else {
+        await getDefaultBlockList(
+          {
+            cache: true,
+            nodeModulesPath: api.paths.absNodeModulesPath,
+            customSelectBlockArgs: (list: any[]) => {
+              success({
+                data: list,
+              });
+            },
+          },
+          blockConfig,
+          api,
+        );
+      }
+    } else if (type === 'org.umi.block.add') {
+      // 添加
+      const { block: selectItem, ...other } = payload;
+      await addBlock(
+        {
+          ...other,
+          // 约定式跳过路由修改
+          skipModifyRoutes: !!api.userConfig.route,
+          nodeModulesPath: api.paths.absNodeModulesPath,
+          url: selectItem.key,
+          ...blockConfig,
+        },
+        {},
+        api,
+      );
+      success({
+        message: '区块使用成功!',
+      });
+    }
+  });
+  const customSelectBlockArgs = () => {
+    const { PORT, BASE_PORT } = process.env;
+    const viewUrl = `http://localhost:${
+      BASE_PORT || PORT || '8000'
+    }${ENTRY_PATH}`;
+    logger.info(
+      `因为你使用了 useUI 配置，请访问页面 ${viewUrl} 进行操作，请注意访问页面之前要求开发服务已启动`,
+    );
+  };
+  ['_modifyBlockFile'].forEach((name) => {
+    api.registerMethod({ name });
+  });
+  // @ts-ignore
+  api?._modifyBlockFile?.((memo) => {
+    // TODO: 还有什么操作，都可以在这里处理
+    return memo
+      .replaceAll('@umijs/max', api.appData.umi.importSource)
+      .replaceAll('umi', api.appData.umi.importSource);
+  });
   async function block(args: any = {}, opts = {}) {
     const { config } = api;
     const blockConfig = config?.block || {};
-
     let retCtx;
     switch (args._[0]) {
       case 'clear':
@@ -75,8 +160,12 @@ export default (api: IApi) => {
         retCtx = await getDefaultBlockList(
           {
             ...args,
+            cache: true,
             nodeModulesPath:
               blockConfig.homedir === false ? api.paths.absNodeModulesPath : '',
+            customSelectBlockArgs: blockConfig?.useUI
+              ? customSelectBlockArgs
+              : null,
           },
           blockConfig,
           api,

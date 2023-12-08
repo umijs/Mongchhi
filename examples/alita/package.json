@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "@alita/flow": "*",
-    "@mongchhi/plugin-blocks": "workspace:*",
-    "@mongchhi/preset-mongchhi": "workspace:*",
+    "@umijs/preset-blocks": "workspace:*",
     "alita": "^3.3.7",
     "antd-mobile": "^5.15.1",
     "classnames": "^2.2.6",
