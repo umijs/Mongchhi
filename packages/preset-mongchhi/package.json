@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/preset-mongchhi",
-  "version": "0.0.2",
+  "version": "0.0.3-alpha.0",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -15,14 +15,14 @@
     "dev": "father dev"
   },
   "dependencies": {
-    "@mongchhi/plugin-antd-theme": "^0.0.2",
-    "@mongchhi/plugin-inject-ui": "^0.0.2",
-    "@mongchhi/plugin-mongchhi": "^0.0.2",
-    "@mongchhi/plugin-sdk": "^0.0.2",
-    "@mongchhi/plugin-socket": "^0.0.2"
+    "@mongchhi/plugin-antd-theme": "^0.0.3-alpha.0",
+    "@mongchhi/plugin-inject-ui": "^0.0.3-alpha.0",
+    "@mongchhi/plugin-mongchhi": "^0.0.3-alpha.0",
+    "@mongchhi/plugin-sdk": "^0.0.3-alpha.0",
+    "@mongchhi/plugin-socket": "^0.0.3-alpha.0"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "0a234fb0354105eec0b7a914c3bb017acea69a65"
+  "gitHead": "f0f9f0bf8c2582cb37cd54cb10f11ccf57b9d81f"
 }
