@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/plugin-mongchhi",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -16,8 +16,8 @@
     "watch": "father dev"
   },
   "dependencies": {
-    "@mongchhi/types": "^0.0.1-alpha.1",
-    "@mongchhi/utils": "^0.0.1-alpha.1",
+    "@mongchhi/types": "^0.0.1",
+    "@mongchhi/utils": "^0.0.1",
     "@umijs/launch-editor": "^1.0.1",
     "@umijs/utils": "4.0.89",
     "node-fetch": "^3.3.0"

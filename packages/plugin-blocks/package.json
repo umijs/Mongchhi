@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/plugin-blocks",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -16,8 +16,8 @@
     "watch": "father dev"
   },
   "dependencies": {
-    "@mongchhi/types": "^0.0.1-alpha.1",
-    "@mongchhi/ui-block": "^0.0.1-alpha.1",
+    "@mongchhi/types": "^0.0.1",
+    "@mongchhi/ui-block": "^0.0.1",
     "@umijs/block-sdk": "^2.3.0",
     "@umijs/deps": "^3.5.41",
     "@umijs/utils": "4.0.89",
