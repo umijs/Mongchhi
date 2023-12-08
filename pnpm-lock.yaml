@@ -192,6 +192,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.0.1
         version: registry.npmjs.org/@ant-design/icons@5.0.1
+      '@iconify-json/grommet-icons':
+        specifier: 1.1.6
+        version: registry.npmjs.org/@iconify-json/grommet-icons@1.1.6
       '@mongchhi/plugin-socket':
         specifier: ^0.0.1-alpha.1
         version: link:../plugin-socket
@@ -4544,15 +4547,12 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==, tarball: https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz}
     dev: false
 
-  /@iconify/types@2.0.0:
-    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==, tarball: https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz}
-
   /@iconify/utils@2.1.1:
     resolution: {integrity: sha512-H8xz74JDzDw8f0qLxwIaxFMnFkbXTZNWEufOk3WxaLFHV4h0A2FjIDgNk5LzC0am4jssnjdeJJdRs3UFu3582Q==, tarball: https://registry.npmjs.org/@iconify/utils/-/utils-2.1.1.tgz}
     dependencies:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.2
-      '@iconify/types': 2.0.0
+      '@iconify/types': registry.npmjs.org/@iconify/types@2.0.0
       debug: 4.3.4
       kolorist: 1.8.0
       local-pkg: 0.4.3
@@ -17840,13 +17840,11 @@ packages:
     version: 1.1.6
     dependencies:
       '@iconify/types': registry.npmjs.org/@iconify/types@2.0.0
-    dev: true
 
   registry.npmjs.org/@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz}
     name: '@iconify/types'
     version: 2.0.0
-    dev: true
 
   registry.npmjs.org/@icons/material@0.2.4:
     resolution: {integrity: sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@icons/material/-/material-0.2.4.tgz}
