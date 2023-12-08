@@ -4,6 +4,14 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     globals: true,
-    exclude: ['node_modules', 'dist', '.idea', '.git', '.cache', 'e2e'],
+    exclude: [
+      'node_modules/**',
+      '**/node_modules/**',
+      'dist',
+      '.idea',
+      '.git',
+      '.cache',
+      'e2e',
+    ],
   },
 });
