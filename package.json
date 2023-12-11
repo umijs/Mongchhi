@@ -29,6 +29,7 @@
     "prepare": "is-ci || husky install",
     "prepublish": "pnpm run build",
     "release": "lerna publish --force-publish=*",
+    "pub": "mcs release",
     "simple": "cd examples/simple && pnpm start",
     "test": "vitest run",
     "test-pre:e2e": "npm run simple & npm run ui",
@@ -64,5 +65,8 @@
     "vite": "^4.1.4",
     "vitest": "^0.29.2"
   },
-  "packageManager": "pnpm@7.24.2"
+  "packageManager": "pnpm@7.24.2",
+  "dependencies": {
+    "zx": "^7.2.3"
+  }
 }
