@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/utils",
-  "version": "0.0.3-alpha.0",
+  "version": "0.0.3",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -16,7 +16,7 @@
     "watch": "father dev"
   },
   "dependencies": {
-    "@mongchhi/types": "^0.0.3-alpha.0",
+    "@mongchhi/types": "^0.0.3",
     "@umijs/utils": "4.0.89"
   },
   "publishConfig": {
