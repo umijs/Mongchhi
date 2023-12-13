@@ -1,5 +1,5 @@
 import { IApi } from '@mongchhi/types';
-import { fsExtra,prompts } from '@umijs/utils';
+import { fsExtra, prompts } from '@umijs/utils';
 import { writeFileSync } from 'fs';
 import ora from 'ora';
 import { dirname } from 'path';
