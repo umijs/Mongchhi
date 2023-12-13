@@ -110,9 +110,7 @@ export default (api: IApi) => {
   // @ts-ignore
   api?._modifyBlockFile?.((memo) => {
     // TODO: 还有什么操作，都可以在这里处理
-    return memo
-      .replaceAll('@umijs/max', api.appData.umi.importSource)
-      .replaceAll('umi', api.appData.umi.importSource);
+    return memo.replaceAll('@umijs/max', api.appData.umi.importSource);
   });
   async function block(args: any = {}, opts = {}) {
     const { config } = api;

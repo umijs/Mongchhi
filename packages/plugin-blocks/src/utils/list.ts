@@ -1,7 +1,6 @@
 import { IApi } from '@mongchhi/types';
-import { fsExtra } from '@umijs/utils';
+import { fsExtra,prompts } from '@umijs/utils';
 import { writeFileSync } from 'fs';
-import inquirer from 'inquirer';
 import ora from 'ora';
 import { dirname } from 'path';
 import { addBlock } from './addBlock';
@@ -27,14 +26,14 @@ export async function selectInstallBlockArgs(blockArray: any[]) {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve) => {
     let locale = false;
-    const { block, path, uni18n } = await inquirer.prompt([
+    const { block, path, uni18n } = await prompts([
       {
         type: 'list',
         name: 'block',
         message: `⛰  请选择区块（共 ${blockArray.length} 个 )`,
         choices: blockArray,
       },
-      { type: 'input', name: 'path', message: '🏗  请输入输出安装区块的路径' },
+      { type: 'text', name: 'path', message: '🏗  请输入输出安装区块的路径' },
       // {
       //   type: 'confirm',
       //   name: 'js',
@@ -45,18 +44,18 @@ export async function selectInstallBlockArgs(blockArray: any[]) {
         type: 'confirm',
         name: 'uni18n',
         message: '🌎  删除 i18n 代码? ',
-        default: false,
+        initial: false,
       },
     ]);
     // 默认不转 js
     const js = false;
     if (uni18n) {
-      const { region } = await inquirer.prompt([
+      const { region } = await prompts([
         {
-          type: 'input',
+          type: 'text',
           name: 'region',
           message: '🌎  请输入你的选择的语言? ',
-          default: 'zh-CN',
+          initial: 'zh-CN',
         },
       ]);
       locale = region;

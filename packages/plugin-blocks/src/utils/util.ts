@@ -78,7 +78,7 @@ export const genBlockName = (name) =>
     .join('/');
 
 /**
- * 将区块转化为 inquirer 能用的数组
+ * 将区块转化为 prompts 能用的数组
  * @param {*} blocks
  * @returns {[
  *  name:string;
@@ -102,7 +102,7 @@ export function printBlocks(blocks, hasLink?) {
           name += link;
         }
         blockArray.push({
-          name,
+          title: name,
           value: blockName,
           key: blockName,
         });

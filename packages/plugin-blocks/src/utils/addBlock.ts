@@ -157,7 +157,7 @@ export async function addBlock(
     skipModifyRoutes,
     page: isPage,
     layout: isLayout,
-    registry = '',
+    registry = 'https://registry.npmjs.org/',
     js,
     execution = 'shell',
   } = args;
