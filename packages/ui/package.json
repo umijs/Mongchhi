@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/ui-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "files": [
     "dist"
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@alita/flow": "^3.1.0",
-    "@mongchhi/preset-mongchhi": "^0.0.3",
+    "@mongchhi/preset-mongchhi": "^0.0.4",
     "@umijs/plugins": "4.0.89",
     "antd": "^5.3.0",
     "antd-token-previewer": "^1.1.0-21",

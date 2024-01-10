@@ -1,6 +1,6 @@
 {
   "name": "@mongchhi/plugin-sdk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -16,7 +16,7 @@
     "watch": "father dev"
   },
   "dependencies": {
-    "@mongchhi/types": "^0.0.3",
+    "@mongchhi/types": "^0.0.4",
     "@umijs/utils": "4.0.89"
   },
   "publishConfig": {
